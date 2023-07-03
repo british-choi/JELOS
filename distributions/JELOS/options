@@ -8,10 +8,10 @@
   HARDENING_SUPPORT="no"
 
 # The name of the parent organization for updates
-  GIT_ORGANIZATION="JustEnoughLinuxOS"
+  GIT_ORGANIZATION="british-choi"
 
 # The name of the github project for updates
-  GIT_REPO="distribution"
+  GIT_REPO="JELOS"
 
 # Name of the Distro to build (full name, without special characters)
   DISTRONAME="JELOS"
@@ -29,7 +29,7 @@
   BUG_REPORT_URL="https://www.jelos.org"
 
 # Root password to integrate in the target system
-  ROOT_PASSWORD="system generated"
+  ROOT_PASSWORD="jelos"
 
 # Remove kernel and system files from the release directory.
   COREELEC_TARGET_REMOVE="kernel_system"
@@ -66,13 +66,13 @@
   AVAHI_DAEMON="yes"
 
 # build with NFS support (mounting nfs shares via the OS) (yes / no)
-  NFS_SUPPORT="no"
+  NFS_SUPPORT="yes"
 
 # build with Samba Client support (mounting samba shares via the OS) (yes / no)
-  SAMBA_SUPPORT="no"
+  SAMBA_SUPPORT="yes"
 
 # build and install Samba Server (yes / no)
-  SAMBA_SERVER="no"
+  SAMBA_SERVER="yes"
 
 # build and install SFTP Server (yes / no)
   SFTP_SERVER="yes"
