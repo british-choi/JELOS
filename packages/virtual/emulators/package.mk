@@ -45,10 +45,10 @@ case "${DEVICE}" in
     PKG_RETROARCH+=" retropie-shaders"
   ;;
   RK3399)
-    [ "${ENABLE_32BIT}" == "true" ] && EMUS_32BIT="box86 flycast-lr pcsx_rearmed-lr"
-    PKG_EMUS+=" aethersx2-sa dolphin-sa drastic-sa duckstation-sa pcsx_rearmed-lr box64 scummvmsa             \
-               yabasanshiro-sa box64 portmaster"
-    LIBRETRO_CORES+=" beetle-psx-lr bsnes-hd-lr dolphin-lr"
+    [ "${ENABLE_32BIT}" == "true" ] && EMUS_32BIT="box86 pcsx_rearmed-lr"
+    PKG_EMUS+=" aethersx2-sa dolphin-sa drastic-sa duckstation-sa mupen64plus-sa box64 scummvmsa             \
+               yabasanshiro-sa portmaster"
+    LIBRETRO_CORES+=" beetle-psx-lr bsnes-hd-lr dolphin-lr flycast-lr mame-lr pcsx_rearmed-lr"
     PKG_RETROARCH+=" retropie-shaders"
   ;;
   RK356*)
@@ -96,6 +96,9 @@ makeinstall_target() {
 
   ### Flush cache from previous builds
   clean_es_cache
+
+  ### Add BIOS directory
+  add_system_dir /storage/roms/bios
 
   ### Panasonic 3DO
   add_emu_core 3do retroarch opera true
@@ -146,7 +149,7 @@ makeinstall_target() {
   add_emu_core arcade retroarch fbalpha2012 false
   add_emu_core arcade retroarch fbalpha2019 false
   case ${DEVICE} in
-    AMD64|RK3588|S922X)
+    AMD64|RK3588|S922X|RK3399)
       add_emu_core arcade retroarch mame false
     ;;
   esac
@@ -177,7 +180,7 @@ makeinstall_target() {
   ## Sammy Atomiswave
   add_emu_core atomiswave retroarch flycast2021 false
   case ${DEVICE} in
-    RK3*)
+    RK35*|RK3326)
       add_emu_core atomiswave retroarch flycast32 true
       add_emu_core atomiswave retroarch flycast false
       add_emu_core atomiswave flycast flycast-sa false
@@ -274,7 +277,7 @@ makeinstall_target() {
   ### Sega Dreamcast
   add_emu_core dreamcast retroarch flycast2021 false
   case ${DEVICE} in
-    RK3*)
+    RK35*|RK3326)
       add_emu_core dreamcast retroarch flycast32 true
       add_emu_core dreamcast retroarch flycast false
       add_emu_core dreamcast flycast flycast-sa false
@@ -363,6 +366,15 @@ makeinstall_target() {
   add_emu_core gbc retroarch mgba false
   add_emu_core gbc retroarch vbam false
   add_es_system gbc
+
+  ### Nintendo GameBoy Color Hacks
+  add_emu_core gbch retroarch gambatte true
+  add_emu_core gbch retroarch sameboy false
+  add_emu_core gbch retroarch gearboy false
+  add_emu_core gbch retroarch tgbdual false
+  add_emu_core gbch retroarch mgba false
+  add_emu_core gbch retroarch vbam false
+  add_es_system gbch
 
   ### Nintendo GameCube
   case ${DEVICE} in
@@ -471,7 +483,7 @@ makeinstall_target() {
   ### Sega Naomi
   add_emu_core naomi retroarch flycast2021 false
   case ${DEVICE} in
-    RK3*)
+    RK35*|RK3326)
       add_emu_core naomi retroarch flycast32 true
       add_emu_core naomi retroarch flycast false
       add_emu_core naomi flycast flycast-sa false
