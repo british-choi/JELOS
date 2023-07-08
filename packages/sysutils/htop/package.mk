@@ -11,5 +11,5 @@ PKG_LONGDESC="An interactive process viewer for Unix."
 PKG_TOOLCHAIN="autotools"
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-unicode \
-                           HTOP_NCURSES_CONFIG_SCRIPT=ncurses6-config"
+                           HTOP_NCURSES_CONFIG_SCRIPT=ncurses-config"
 
