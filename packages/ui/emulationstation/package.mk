@@ -3,7 +3,7 @@
 # Copyright (C) 2020-present Fewtarius
 
 PKG_NAME="emulationstation"
-PKG_VERSION="f36795b"
+PKG_VERSION="4838efb"
 PKG_GIT_CLONE_BRANCH="JELOS"
 PKG_REV="1"
 PKG_ARCH="any"
