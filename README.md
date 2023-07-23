@@ -2,6 +2,11 @@
 #
 Just Enough Linux Operating System (JELOS) is an immutable Linux distribution for handheld gaming devices developed by a small community of enthusiasts.  Our goal is to produce an operating system that has the features and capabilities that we need, and to have fun as we develop it.
 
+## Screenshots
+|System View|Menu View|Game List|
+|----|----|----|
+|![system-view](https://github.com/JustEnoughLinuxOS/distribution/assets/88717793/3f8b0b5a-c3ba-4b56-a0fb-d72cf143e44f)|![menu](https://github.com/JustEnoughLinuxOS/distribution/assets/88717793/2a6f0d0a-9b13-4619-ab08-19791d49d3d0)|![gamelist-view-metadata-off-immersive](https://github.com/JustEnoughLinuxOS/distribution/assets/88717793/9120a7c4-f06d-4236-a3e8-d49c7089f727)|
+
 ## Device Support
 JELOS supports a variety of ARM and Intel/AMD based devices<sup>1</sup>.  
 | Manufacturer | Device | CPU / Architecture | Kernel | GL driver | Interface |
@@ -15,9 +20,11 @@ JELOS supports a variety of ARM and Intel/AMD based devices<sup>1</sup>.
 |Anbernic| RG552 | Rockchip RK3399 (ARM) | Mainline Linux | Panfrost | Weston + EmulationStation|
 |Anbernic|Win600|AMD Athlon Silver 3050e (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |Atari|VCS|AMD Ryzen R1606G (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
+|AOKZOE | A1 Pro | AMD 7840u (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |AYANEO<sup>3</sup>|Air / Air Pro|Amd Ryzen 5 5560U / AMD Ryzen 7 5825U (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |AYANEO<sup>3</sup>|Air Plus|Amd Ryzen 7 6800U / (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |AYANEO<sup>3</sup>|AYANEO 2|Amd Ryzen 7 6800U / (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
+|GPD|Win 4|Amd Ryzen 7 6800U / (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |GPD|Win Max 2 (2022)|Amd Ryzen 7 6800U / (x86_64)|Mainline Linux|Radeonsi|Weston + EmulationStation|
 |Hardkernel| Odroid Go Advance | Rockchip RK3326 (ARM) | Mainline Linux | Panfrost | Weston + EmulationStation|
 |Hardkernel| Odroid Go Super | Rockchip RK3326 (ARM) | Mainline Linux | Panfrost | Weston + EmulationStation|
@@ -70,7 +77,10 @@ limitations under the License.
 * Write the image to an SDCARD using an imaging tool.  Common imaging tools include [Balena Etcher](https://www.balena.io/etcher/), [Raspberry Pi Imager](https://www.raspberrypi.com/software/), and [Win32 Disk Imager](https://sourceforge.net/projects/win32diskimager/).  If you're skilled with the command line, dd works fine too.
 
 ## Installation
-* JELOS includes an installation tool.  The installation tool can be found in the tools menu.
+* JELOS is installed by restoring an image file and [Flashing](https://github.com/JustEnoughLinuxOS/distribution/tree/main#flashing) to a device's internal storage or an external sd card.
+* On x86 devices JELOS includes an installation tool.  The installation tool can be found in the tools menu, which is one of the systems listed within ES.
+* JELOS operating system is stored on an Ext4 partition that can be read by LINUX but is not natively readable on Windows. Currently it is not possible to access the primary JELOS Ext4 partition on Windows to transfer roms.
+* On devices that support a second sd card, the sd card can be formatted as Ext4, FAT32, or exFAT. JELOS will automatically detect the second SD card on boot and configure the relevant folders for storing roms.
 
 ## Upgrading
 * Download and install the update online via the System Settings menu.
@@ -92,7 +102,7 @@ limitations under the License.
 * [Pull Request Template](/PULL_REQUEST_TEMPLATE.md)
 
 ### Documentation For Everyone
-* [Installation and Device Support](https://github.com/JustEnoughLinuxOS/distribution/tree/main#readme)
+* [Installation and Device Support](https://github.com/JustEnoughLinuxOS/distribution/tree/main#installation)
 * [Device Specific Documentation](/documentation/PER_DEVICE_DOCUMENTATION)
 * [Donating to JELOS](/documentation/GENERAL_DONATING_TO_JELOS.md)
 * [Frequently Asked Questions](/documentation/GENERAL_FREQUENTLY_ASKED_QUESTIONS.md)
@@ -106,6 +116,7 @@ limitations under the License.
 * [Setting Up P2P Networking With ZeroTier](/documentation/SETUP_P2P_ZEROTIER.md)
 * [Configure TailScale VPN](/documentation/SETUP_VPN_TAILSCALE.md)
 * [Setting Up Wireguard VPN](/documentation/SETUP_VPN_WIREGUARD.md)
+* [Creating Custom Shader Presets for Per Game / Per System Use](https://github.com/gannon345/distribution/blob/main/documentation/GENERAL_CUSTOM_SHADERS.md)
 
 ## Credits
 Like any Linux distribution, this project is not the work of one person.  It is the work of many persons all over the world who have developed the open source bits without which this project could not exist.  Special thanks to CoreELEC, LibreELEC, and to developers and contributors across the open source community.

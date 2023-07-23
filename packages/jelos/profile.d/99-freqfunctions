@@ -20,6 +20,9 @@ set_online_threads() {
     MODE=0
   fi
   case ${1} in
+    default)
+      return
+    ;;
     all)
       THREADS=0
       MODE="1"
@@ -58,7 +61,7 @@ set_dmc_gov() {
   then
     for governor in $1 dmc_$1 simple_$1
     do
-      echo $1 >${DMC_FREQ}/governor 2>/dev/null || echo dmc_$1 >${DMC_FREQ}/governor 2>/dev/null
+      echo ${governor} >${DMC_FREQ}/governor 2>/dev/null
       if [ "$?" = 0 ]
       then
         return
@@ -72,7 +75,7 @@ set_gpu_gov() {
   then
     for governor in $1 dmc_$1 simple_$1
     do
-      echo $1 >${GPU_FREQ}/governor 2>/dev/null
+      echo ${governor} >${GPU_FREQ}/governor 2>/dev/null
       if [ "$?" = 0 ]
       then
         return

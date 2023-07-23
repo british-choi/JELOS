@@ -11,6 +11,7 @@ This document describes all available systems emulators and cores available for 
 |Arcade|Daphne (daphne)|1996|`daphne`|.daphne .DAPHNE .zip .ZIP|**hypseus:** hypseus (default)<br>**retroarch:** daphne<br>|
 |Arcade|Final Burn Neo (fbn)|1986|`fbneo`|.7z .zip .7Z .ZIP|**retroarch:** fbneo (default)<br>**retroarch:** mame2003_plus<br>**retroarch:** mame2010<br>**retroarch:** mame2015<br>**retroarch:** mame<br>**retroarch:** fbalpha2012<br>**retroarch:** fbalpha2019<br>|
 |Arcade|MAME (mame)|1948|`mame`|.7z .7Z .zip .ZIP|**retroarch:** mame2003_plus (default)<br>**retroarch:** mame2010<br>**retroarch:** mame2015<br>**retroarch:** mame<br>**retroarch:** fbneo<br>**retroarch:** fbalpha2012<br>**retroarch:** fbalpha2019<br>|
+|Arduboy|Arduboy (arduboy)|2014|`arduboy`|.hex .HEX|**retroarch:** arduous (default)<br>|
 |Atari|2600 (atari2600)|1977|`atari2600`|.a26 .A26 .bin .BIN .zip .ZIP .7z .7Z|**retroarch:** stella (default)<br>|
 |Atari|5200 (atari5200)|1982|`atari5200`|.rom .ROM .xfd .XFD .atr .ATR .atx .ATX .cdm .CDM .cas .CAS .car .CAR .bin .BIN .a52 .A52 .xex .XEX .zip .ZIP .7z .7Z|**retroarch:** a5200 (default)<br>**retroarch:** atari800<br>|
 |Atari|7800 (atari7800)|1986|`atari7800`|.a78 .A78 .bin .BIN .zip .ZIP .7z .7Z|**retroarch:** prosystem (default)<br>|
@@ -38,7 +39,7 @@ This document describes all available systems emulators and cores available for 
 |Infocom|Z-Machine (zmachine)|1979|`zmachine`|.dat .DAT .z1 .Z1 .z2 .Z2 .z3 .Z3 .z4 .Z4 .z5 .Z5 .z6 .Z6 .zip .ZIP|**retroarch:** mojozork (default)<br>|
 |JELOS|Moonlight Game Streaming (moonlight)|2021|`moonlight`|.sh .SH||
 |JELOS|MPlayer (mplayer)|unknown|`mplayer`|.mp4 .MP4 .mkv .MKV .avi .AVI .mov .MOV .wmv .WMV .m3u .M3U .mpg .MPG .ytb .YTB .twi .TWI .sh .SH .mp3 .MP3 .aac .AAC .mka .MKA .dts .DTS .flac .FLAC .ogg .OGG .m4a .M4A .ac3 .AC3 .opus .OPUS .wav .WAV .wv .WV .eac3 .EAC3 .thd .THD|**mplayer:** mplayer (default)<br>|
-|JELOS|Music Player (music)|unknown|`music`|.mp4 .MP4 .mkv .MKV .avi .AVI .mov .MOV .wmv .WMV .m3u .M3U .mpg .MPG .ytb .YTB .twi .TWI .sh .SH .mp3 .MP3 .aac .AAC .mka .MKA .dts .DTS .flac .FLAC .ogg .OGG .m4a .M4A .ac3 .AC3 .opus .OPUS .wav .WAV .wv .WV .eac3 .EAC3 .thd .THD|**gmu:** gmu (default)<br>|
+|JELOS|Music Player (music)|unknown|`playlists`|.m3u .M3U .sh .SH|**gmu:** gmu (default)<br>|
 |JELOS|Ports (ports)|2021|`ports`|.sh .SH||
 |JELOS|Screenshots (imageviewer)|2021|`screenshots`|.jpg .jpeg .png .bmp .psd .tga .gif .hdr .pic .ppm .pgm .mkv .pdf .mp4 .avi||
 |JELOS|Tools (tools)|2021|`modules`|.sh||
@@ -80,7 +81,7 @@ This document describes all available systems emulators and cores available for 
 |Nintendo|Super Famicom (sfc)|1990|`sfc`|.smc .SMC .fig .FIG .sfc .SFC .swc .SWC .zip .ZIP .7z .7Z|**retroarch:** snes9x (default)<br>**retroarch:** snes9x2010<br>**retroarch:** snes9x2002<br>**retroarch:** snes9x2005_plus<br>**retroarch:** beetle_supafaust<br>**retroarch:** bsnes<br>**retroarch:** bsnes_mercury_performance<br>**retroarch:** bsnes_hd_beta<br>|
 |Nintendo|Super Nintendo (Hacks) (snesh)|1991|`snesh`|.smc .SMC .fig .FIG .sfc .SFC .swc .SWC .zip .ZIP .7z .7Z|**retroarch:** snes9x (default)<br>**retroarch:** snes9x2010<br>**retroarch:** snes9x2002<br>**retroarch:** snes9x2005_plus<br>**retroarch:** beetle_supafaust<br>**retroarch:** bsnes<br>**retroarch:** bsnes_mercury_performance<br>**retroarch:** bsnes_hd_beta<br>|
 |Nintendo|Super Nintendo (snes)|1991|`snes`|.smc .SMC .fig .FIG .sfc .SFC .swc .SWC .zip .ZIP .7z .7Z|**retroarch:** snes9x (default)<br>**retroarch:** snes9x2010<br>**retroarch:** snes9x2002<br>**retroarch:** snes9x2005_plus<br>**retroarch:** beetle_supafaust<br>**retroarch:** bsnes<br>**retroarch:** bsnes_mercury_performance<br>**retroarch:** bsnes_hd_beta<br>|
-|Nintendo|switch (switch)|2017|`switch`|.xci .XCI .nsp .NSP .nca .NCA .nso .NSO .nro .NRO|**yuzu:** yuzu-sa (default)<br>**ryujinx:** ryujinx-sa<br>|
+|Nintendo|Switch (switch)|2017|`switch`|.xci .XCI .nsp .NSP .nca .NCA .nso .NSO .nro .NRO|**yuzu:** yuzu-sa (default)<br>**ryujinx:** ryujinx-sa<br>|
 |Nintendo|Virtual Boy (virtualboy)|1995|`virtualboy`|.vb .VB .zip .ZIP .7z .7Z|**retroarch:** beetle_vb (default)<br>|
 |Nintendo|Wii (wii)|2006|`wii`|.gcm .GCM .iso .ISO .gcz .GCZ .ciso .CISO .wbfs .WBFS .rvz .RVZ .dol .DOL .wad .WAD|**dolphin:** dolphin-sa-wii (default)<br>**primehack:** primehack<br>**retroarch:** dolphin<br>|
 |Nintendo|Wii U (wiiu)|2012|`wiiu`|.wud .WUD .wux .WUX .wua .WUA|**cemu:** cemu-sa (default)<br>|

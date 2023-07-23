@@ -54,7 +54,20 @@ case ${ASPECT} in
   1.76|0.56)
    ASPECT="16:9"
   ;;
+  1.6|0.62)
+   ASPECT="16:10"
+  ;;
 esac
+
+### Set the aspect ratio in ES.
+ES_CONFIG="/storage/.config/emulationstation/es_settings.cfg"
+ES_ASPECT="${ASPECT/:/-}"
+if [ "$(grep subset.aspect-ratio ${ES_CONFIG})" ]
+then
+  sed -i 's|<string name="subset.aspect-ratio".*$|<string name="subset.aspect-ratio" value="'${ES_ASPECT}'"/>|g' ${ES_CONFIG}
+else
+  sed -i '/<\/config>/i \\t<string name="subset.aspect-ratio" value="'${ES_ASPECT}'"/>' ${ES_CONFIG}
+fi
 
 if [ -f "/storage/.config/emulationstation/resources/logo.png" ]
 then
@@ -138,7 +151,7 @@ fi
 PCIEPOWERSAVE=$(get_setting system.power.pcie)
 if [ -z "${PCIEPOWERSAVE}" ]
 then
-  set_setting system.power.pcie 1
+  set_setting system.power.pcie 0
 fi
 
 RTPM=$(get_setting system.power.rtpm)
@@ -150,7 +163,7 @@ fi
 WAKEEVENTS=$(get_setting system.power.wakeevents)
 if [ -z "${WAKEEVENTS}" ]
 then
-  set_setting system.power.wakeevents 1
+  set_setting system.power.wakeevents 0
 fi
 
 WIFIPOWERSAVE=$(get_setting system.power.wifi)
@@ -170,3 +183,14 @@ sed -i 's#<string name="PowerSaverMode".*$#<string name="PowerSaverMode" value="
 
 ### Remove properties containing "auto" from the system config.
 sed -i "/^.*=auto/d" /storage/.config/system/configs/system.cfg
+
+### Fix up music player to start selection
+if [ -d "/storage/.local/share/gmu" ]
+then
+  rm -rf /storage/.local/share/gmu
+fi
+if [ ! -d "/storage/.config/gmu/playlists" ]
+then
+  mkdir -p /storage/.config/gmu/playlists
+fi
+cp -rf /usr/config/gmu/playlists/* /storage/.config/gmu/playlists/
