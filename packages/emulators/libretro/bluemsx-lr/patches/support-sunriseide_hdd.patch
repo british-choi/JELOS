@@ -1,0 +1,45 @@
+diff --git a/libretro.c b/libretro.c
+index 572a47e..40d77a8 100644
+--- a/libretro.c
++++ b/libretro.c
+@@ -35,6 +35,7 @@
+ #include "ziphelper.c"
+ 
+ #include "libretro_core_options.h"
++#include "Disk.h"
+ 
+ retro_log_printf_t log_cb;
+ static retro_video_refresh_t video_cb;
+@@ -924,10 +925,14 @@ bool retro_load_game(const struct retro_game_info *info)
+    switch(media_type)
+    {
+       case MEDIA_TYPE_DISK:
+-         strcpy(disk_paths[0] , info->path);
+-         strcpy(properties->media.disks[0].fileName , info->path);
+-         disk_inserted = true;
+-         attach_disk_swap_interface();
++         if (strstr(info->path, "IDE_") != NULL)
++            insertDiskette(properties, diskGetHdDriveId(2, 0), info->path, NULL, -1);
++         else {
++            strcpy(disk_paths[0] , info->path);
++            strcpy(properties->media.disks[0].fileName , info->path);
++            disk_inserted = true;
++            attach_disk_swap_interface();
++         }
+          break;
+       case MEDIA_TYPE_DISK_BUNDLE:
+          if (!read_m3u(info->path))
+diff --git a/libretro_core_options.h b/libretro_core_options.h
+index e699258..316d059 100644
+--- a/libretro_core_options.h
++++ b/libretro_core_options.h
+@@ -37,6 +37,9 @@ struct retro_core_option_definition option_defs_us[] = {
+          { "MSXturboR",   NULL },
+          { "MSX2",   NULL },
+          { "MSX2+",   NULL },
++         { "MSXturboR - SUNRISEIDE HDD",   NULL },
++         { "MSX2 - SUNRISEIDE HDD",   NULL },
++         { "MSX2+ - SUNRISEIDE HDD",   NULL },
+          { "SEGA - SG-1000",   NULL },
+          { "SEGA - SC-3000",   NULL },
+          { "SEGA - SF-7000",   NULL },
