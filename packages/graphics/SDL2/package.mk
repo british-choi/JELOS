@@ -3,7 +3,7 @@
 # Copyright (C) 2022-present Fewtarius
 
 PKG_NAME="SDL2"
-PKG_VERSION="2.26.5"
+PKG_VERSION="2.28.1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.libsdl.org/"
 PKG_URL="https://www.libsdl.org/release/SDL2-${PKG_VERSION}.tar.gz"
@@ -11,6 +11,12 @@ PKG_DEPENDS_TARGET="toolchain alsa-lib systemd dbus pulseaudio libdrm"
 PKG_LONGDESC="Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware."
 PKG_DEPENDS_HOST="toolchain:host distutilscross:host"
 PKG_PATCH_DIRS+="${DEVICE}"
+
+case ${ARCH} in
+  arm|aarch64)
+    PKG_DEPENDS_TARGET+=" SDL2-rotated"
+  ;;
+esac
 
 if [ ! "${OPENGL}" = "no" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGL} glu"
@@ -49,7 +55,7 @@ then
   PKG_DEPENDS_TARGET+=" wayland ${WINDOWMANAGER}"
   PKG_CMAKE_OPTS_TARGET+=" -DSDL_WAYLAND=ON \
                            -DVIDEO_WAYLAND=ON \
-                           -DVIDEO_WAYLAND_QT_TOUCH=OFF \
+                           -DVIDEO_WAYLAND_QT_TOUCH=ON \
                            -DWAYLAND_SHARED=ON \
                            -DVIDEO_X11=OFF \
                            -DSDL_X11=OFF"
@@ -60,20 +66,6 @@ else
                            -DVIDEO_X11=OFF \
                            -DSDL_X11=OFF"
 fi
-
-case ${DEVICE} in
-  RK3566-X55)
-    PKG_DEPENDS_TARGET+=" librga"
-    pre_make_host() {
-      sed -i "s| -lrga||g" ${PKG_BUILD}/CMakeLists.txt
-    }
-    pre_make_target() {
-      if ! `grep -rnw "${PKG_BUILD}/CMakeLists.txt" -e '-lrga'`; then
-        sed -i "s|--no-undefined|--no-undefined -lrga|" ${PKG_BUILD}/CMakeLists.txt
-      fi
-    }
-  ;;
-esac
 
 pre_configure_target(){
   export LDFLAGS="${LDFLAGS} -ludev"

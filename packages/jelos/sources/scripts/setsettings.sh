@@ -37,6 +37,10 @@ AUTOSAVE="${AUTOSAVE% --*}"
 SNAPSHOT="$@"
 SNAPSHOT="${SNAPSHOT#*--snapshot=*}"
 
+#Controllers
+CONTROLLERS="$@"
+CONTROLLERS="${CONTROLLERS#*--controllers=*}"
+
 ###
 ### Arrays containing various supported/non-supported attributes.
 ###
@@ -123,10 +127,14 @@ declare -a NO_RUNAHEAD=(    atomiswave
 )
 
 declare -a NO_ANALOG=(  dreamcast
+                        gc
                         n64
+                        nds
+                        ps2
                         psp
                         pspminis
                         psx
+                        wii
                         wonderswan
                         wonderswancolor
 )
@@ -191,6 +199,10 @@ declare -a LANG_CODES=( ["false"]="0"
 ###
 
 LOGGING=$(get_setting system.loglevel)
+if [ -z "${LOGGING}" ]
+then
+  LOGGING="none"
+fi
 
 ###
 ### Set up
@@ -246,7 +258,7 @@ function clear_setting() {
       log "Remove setting [${1}]"
       if [ ! -f "${TMP_CONFIG}.sed" ]
       then
-          echo -n 'sed -i "' >${TMP_CONFIG}.sed
+          echo -n 'sed -i "/^'${1}'/d;' >${TMP_CONFIG}.sed
       else
           echo -n ' /^'${1}'/d;' >>${TMP_CONFIG}.sed
       fi
@@ -269,17 +281,7 @@ function add_setting() {
     if [ -z "${RETROARCH_VALUE}" ]& \
        [ ! "${1}" = "none" ]
     then
-            case ${OS_SETTING} in
-            0|false|none)
-                RETROARCH_VALUE="false"
-            ;;
-            1|true)
-                RETROARCH_VALUE="true"
-            ;;
-            *)
-                RETROARCH_VALUE="${OS_SETTING}"
-            ;;
-        esac
+        RETROARCH_VALUE="${OS_SETTING}"
     fi
     clear_setting "${RETROARCH_KEY}"
     echo "${RETROARCH_KEY} = \"${RETROARCH_VALUE}\"" >>${TMP_CONFIG}
@@ -303,6 +305,30 @@ function match() {
 ###
 ### Game data functions
 ###
+
+### Configure retroarch paths
+function set_retroarch_paths() {
+  for RETROARCH_PATH in assets_directory cache_directory            \
+                        cheat_database_path content_database_path   \
+                        content_database_path joypad_autoconfig_dir \
+                        libretro_directory libretro_info_path       \
+                        overlay_directory video_shader_dir
+  do
+    clear_setting "${RETROARCH_PATH}"
+  done
+  flush_settings
+  cat <<EOF >>${RETROARCH_CONFIG}
+assets_directory = "/tmp/assets"
+cache_directory = "/tmp/cache"
+cheat_database_path = "/tmp/database/cht"
+content_database_path = "/tmp/database/rdb"
+joypad_autoconfig_dir = "/tmp/joypads"
+libretro_directory = "/tmp/cores"
+libretro_info_path = "/tmp/cores"
+overlay_directory = "/tmp/overlays"
+video_shader_dir = "/tmp/shaders"
+EOF
+}
 
 ### Configure retroarch hotkeys
 function configure_hotkeys() {
@@ -444,10 +470,8 @@ function set_aspectratio() {
       *)
         for AR in ${!CORE_RATIOS[@]}
         do
-            log "Test [${ASPECT_RATIO}] (${CORE_RATIOS[${AR}]}) (${AR})"
             if [ "${CORE_RATIOS[${AR}]}" = "${ASPECT_RATIO}" ]
             then
-                log "Find aspect ratio [${ASPECT_RATIO}] (${CORE_RATIOS[${AR}]})"
                 add_setting "none" "aspect_ratio_index" "${AR}"
                 break
             fi
@@ -540,6 +564,10 @@ function set_autosave() {
         [1-3])
             log "Autosave enabled (${CHKAUTOSAVE})"
             add_setting "none" "savestate_directory" "${SNAPSHOTS}/${PLATFORM}"
+            if [ ! -d "${SNAPSHOTS}/${PLATFORM}" ]
+            then
+                mkdir "${SNAPSHOTS}/${PLATFORM}"
+            fi
             case ${AUTOSAVE} in
                 1)
                     log "Autosave active (${AUTOSAVE})"
@@ -583,11 +611,11 @@ function set_audiolatency() {
 function set_analogsupport() {
     local HAS_ANALOG="$(match ${PLATFORM} ${NO_ANALOG[@]})"
     case ${HAS_ANALOG} in
-        0|false|none)
+        1)
             add_setting "none" "input_player1_analog_dpad_mode" "0"
         ;;
         *)
-            add_setting "analogue" "input_player1_analog_dpad_mode"
+            add_setting "analogue" "input_player1_analog_dpad_mode" "1"
         ;;
     esac
 }
@@ -715,17 +743,15 @@ function set_gambatte() {
     fi
 }
 
-function set_controllers() {
-    CONTROLLERS="$@"
-    CONTROLLERS="${CONTROLLERS#*--controllers=*}"
-
+function setup_controllers() {
     for i in $(seq 1 1 5)
     do
-        log "Controller setup (${1})"
+        log "Controller setup (${i})"
         if [[ "$CONTROLLERS" == *p${i}* ]]
         then
             PINDEX="${CONTROLLERS#*-p${i}index }"
             PINDEX="${PINDEX%% -p${i}guid*}"
+            log "Set up controller ($i) (${PINDEX})"
             add_setting "none" "input_player${i}_joypad_index" "${PINDEX}"
             case ${PLATFORM} in
                 atari5200)
@@ -734,6 +760,7 @@ function set_controllers() {
             esac
         fi
     done
+    flush_settings
 }
 
 ###
@@ -741,9 +768,11 @@ function set_controllers() {
 ###
 
 ###
-### Functions that cannot be parallelized
+### Functions that must be run without parallelization.
 ###
 
+set_retroarch_paths
+setup_controllers
 configure_hotkeys
 
 ###
@@ -777,7 +806,6 @@ flush_settings
 
 set_atari &
 set_gambatte &
-set_controllers &
 
 wait
 flush_settings
