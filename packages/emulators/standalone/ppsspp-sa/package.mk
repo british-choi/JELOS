@@ -9,7 +9,7 @@ PKG_SITE="https://github.com/hrydgard/ppsspp"
 PKG_URL="${PKG_SITE}.git"
 PKG_VERSION="30862d0752b4b544d5f2fe9cfe52a20c1878cfbd"
 PKG_LICENSE="GPLv2"
-PKG_DEPENDS_TARGET="toolchain ffmpeg libzip SDL2 zlib zip"
+PKG_DEPENDS_TARGET="toolchain ffmpeg libzip libpng SDL2 zlib zip"
 PKG_SHORTDESC="PPSSPPDL"
 PKG_LONGDESC="PPSSPP Standalone"
 GET_HANDLER_SUPPORT="git"
@@ -20,7 +20,7 @@ PKG_CMAKE_OPTS_TARGET=" -DUSE_SYSTEM_FFMPEG=OFF \
                         -DCMAKE_BUILD_TYPE=Release \
                         -DCMAKE_SYSTEM_NAME=Linux \
                         -DBUILD_SHARED_LIBS=OFF \
-                        -DUSE_SYSTEM_LIBPNG=OFF \
+                        -DUSE_SYSTEM_LIBPNG=ON \
                         -DANDROID=OFF \
                         -DWIN32=OFF \
                         -DAPPLE=OFF \
