@@ -1,7 +1,7 @@
 diff -rupN retroarch.orig/frontend/drivers/platform_unix.c retroarch/frontend/drivers/platform_unix.c
 --- retroarch.orig/frontend/drivers/platform_unix.c	2022-02-05 19:38:43.852018492 -0500
 +++ retroarch/frontend/drivers/platform_unix.c	2022-02-05 20:10:30.735583922 -0500
-@@ -2048,12 +2048,6 @@ static void frontend_unix_deinit(void *d
+@@ -1983,12 +1983,6 @@ static void frontend_unix_deinit(void *d
     android_app_destroy(android_app);
  #endif
  
@@ -14,7 +14,7 @@ diff -rupN retroarch.orig/frontend/drivers/platform_unix.c retroarch/frontend/dr
     frontend_unix_set_gamemode(false);
  }
  
-@@ -2885,11 +2879,7 @@ frontend_ctx_driver_t frontend_ctx_unix
+@@ -2886,11 +2880,7 @@ frontend_ctx_driver_t frontend_ctx_unix
  #else
     NULL,                               /* get_lakka_version */
  #endif

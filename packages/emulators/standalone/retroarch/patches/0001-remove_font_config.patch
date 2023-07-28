@@ -1,0 +1,13 @@
+diff --git a/gfx/drivers_font_renderer/freetype.c b/gfx/drivers_font_renderer/freetype.c
+index d592ee594b..31ecd63697 100644
+--- a/gfx/drivers_font_renderer/freetype.c
++++ b/gfx/drivers_font_renderer/freetype.c
+@@ -30,7 +30,7 @@
+ /* Was told by contributor that Windows support is pending,
+  * so exclude Windows for now */
+ #if defined(HAVE_FONTCONFIG) && !defined(_WIN32)
+-#define HAVE_FONTCONFIG_SUPPORT
++//#define HAVE_FONTCONFIG_SUPPORT
+ #endif
+ 
+ #if defined(HAVE_FONTCONFIG_SUPPORT)
