@@ -25,4 +25,8 @@ makeinstall_target() {
   cp fileman ${INSTALL}/usr/bin/
   cp -rf res ${INSTALL}/usr/share/fileman/
   chmod 0755 ${INSTALL}/usr/bin/fileman
+
+
+  # Copy korean font
+  cp -rf ${PKG_DIR}/res/*.ttf ${INSTALL}/usr/share/fileman/res/
 }
