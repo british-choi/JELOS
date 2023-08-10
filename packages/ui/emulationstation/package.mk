@@ -3,7 +3,7 @@
 # Copyright (C) 2020-present Fewtarius
 
 PKG_NAME="emulationstation"
-PKG_VERSION="49ddc79"
+PKG_VERSION="47c4e1f"
 PKG_GIT_CLONE_BRANCH="JELOS"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -33,7 +33,7 @@ else
   PKG_CMAKE_OPTS_TARGET+=" -DENABLE_UPDATES=0"
 fi
 
-PKG_CMAKE_OPTS_TARGET+=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=0 -DCEC=0"
+PKG_CMAKE_OPTS_TARGET+=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=0 -DCEC=0 -DENABLE_PULSE=1"
 
 ##########################################################################################################
 # The following allows building Emulation station from local copy by using EMULATIONSTATION_SRC.

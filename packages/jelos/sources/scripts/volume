@@ -31,10 +31,11 @@ then
 elif (( ${VOLUME} > ${MAX_VOLUME} ))
 then
   VOLUME=${MAX_VOLUME}
-elif [ -z "${VOLUME}"
+elif [ -z "${VOLUME}" ]
 then
   VOLUME=60
 fi
 
-amixer set "${DEVICE_AUDIO_MIXER}" ${VOLUME}%
+#amixer set "${DEVICE_AUDIO_MIXER}" ${VOLUME}%
+pactl -- set-sink-volume @DEFAULT_SINK@ ${VOLUME}%
 set_setting "audio.volume" ${VOLUME}
