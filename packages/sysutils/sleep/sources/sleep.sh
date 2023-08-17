@@ -6,9 +6,9 @@
 
 if [ -e "/sys/firmware/devicetree/base/model" ]
 then
-  QUIRK_DEVICE=$(cat /sys/firmware/devicetree/base/model 2>/dev/null)
+  QUIRK_DEVICE=$(tr -d '\0' </sys/firmware/devicetree/base/model 2>/dev/null)
 else
-  QUIRK_DEVICE="$(cat /sys/class/dmi/id/sys_vendor 2>/dev/null) $(cat /sys/class/dmi/id/product_name 2>/dev/null)"
+  QUIRK_DEVICE="$(tr -d '\0' </sys/class/dmi/id/sys_vendor 2>/dev/null) $(tr -d '\0' </sys/class/dmi/id/product_name 2>/dev/null)"
 fi
 QUIRK_DEVICE="$(echo ${QUIRK_DEVICE} | sed -e "s#[/]#-#g")"
 
@@ -125,7 +125,7 @@ case $1 in
 
     DEVICE_VOLUME=$(get_setting "audio.volume" 2>/dev/null)
     log $0 "Restoring volume to ${DEVICE_VOLUME}%."
-    amixer -M set "${DEVICE_AUDIO_MIXER}" ${DEVICE_VOLUME}%
+    amixer -c 0 -M set "${DEVICE_AUDIO_MIXER}" ${DEVICE_VOLUME}%
 
     BRIGHTNESS=$(get_setting system.brightness)
     log $0 "Restoring brightness to ${BRIGHTNESS}."

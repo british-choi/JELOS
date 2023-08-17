@@ -91,11 +91,8 @@
   # debug tty path
     DEBUG_TTY="/dev/ttyFIQ0"
 
-  # build and install PulseAudio support (yes / no)
-    PULSEAUDIO_SUPPORT="yes"
-
   # build and install bluetooth support (yes / no)
-    BLUETOOTH_SUPPORT="no"
+    BLUETOOTH_SUPPORT="yes"
 
   # build and install Avahi (Zeroconf) daemon (yes / no)
     AVAHI_DAEMON="no"

@@ -3,83 +3,83 @@
 # Copyright (C) 2023-present Fewtarius
 
 PKG_NAME="retroarch"
-PKG_VERSION="62f3840e3883cf64c126c39b9668e6bb59a44606"
+PKG_VERSION="6733d6da57d58a07b5fd6ceae129c538d87d0483"
 PKG_SITE="https://github.com/libretro/RetroArch"
 PKG_URL="${PKG_SITE}.git"
 PKG_LICENSE="GPLv3"
-PKG_DEPENDS_TARGET="toolchain SDL2 alsa-lib libass openssl freetype zlib retroarch-assets core-info ffmpeg libass joyutils empty nss-mdns openal-soft libogg libvorbisidec libvorbis libvpx libpng libdrm pulseaudio miniupnpc flac"
+PKG_DEPENDS_TARGET="toolchain SDL2 alsa-lib libass openssl freetype zlib retroarch-assets core-info ffmpeg libass joyutils empty nss-mdns openal-soft libogg libvorbisidec libvorbis libvpx libpng libdrm pulseaudio pipewire miniupnpc flac"
 PKG_LONGDESC="Reference frontend for the libretro API."
 GET_HANDLER_SUPPORT="git"
 
 PKG_PATCH_DIRS+=" ${DEVICE}"
 
+PKG_CONFIGURE_OPTS_TARGET="   --disable-qt \
+                              --enable-alsa \
+                              --enable-udev \
+                              --disable-opengl1 \
+                              --disable-opengl \
+                              --disable-opengles \
+                              --disable-opengles3 \
+                              --disable-opengles3_2 \
+                              --disable-wayland \
+                              --disable-x11 \
+                              --enable-zlib \
+                              --enable-freetype \
+                              --disable-discord \
+                              --disable-vg \
+                              --disable-sdl \
+                              --enable-sdl2 \
+                              --enable-ffmpeg"
+
+case ${DEVICE} in
+  RK3566-X55)
+    PKG_DEPENDS_TARGET+=" librga libgo2"
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
+  ;;
+  *)
+    PKG_CONFIGURE_OPTS_TARGET+=" --disable-odroidgo2"
+  ;;
+esac
+
+case ${ARCH} in
+  arm)
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-neon"
+  ;;
+    aarch64)
+    PKG_CONFIGURE_OPTS_TARGET+=" --disable-neon"
+  ;;
+esac
+
+if [ "${DISPLAYSERVER}" = "wl" ]; then
+  PKG_DEPENDS_TARGET+=" wayland ${WINDOWMANAGER}"
+  PKG_CONFIGURE_OPTS_TARGET+=" --enable-wayland"
+fi
+
+if [ ! "${OPENGL}" = "no" ]; then
+    PKG_DEPENDS_TARGET+=" ${OPENGL} glu libglvnd"
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengl"
+else
+    PKG_CONFIGURE_OPTS_TARGET+=" --disable-opengl"
+fi
+
+if [ "${OPENGLES_SUPPORT}" = yes ] && \
+   [[ ! "${ARCH}" =~ i*86|x86_64 ]]; then
+    PKG_DEPENDS_TARGET+=" ${OPENGLES}"
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles --enable-opengles3 --enable-opengles3_2 --enable-kms"
+else
+    PKG_CONFIGURE_OPTS_TARGET+=" --disable-opengles --disable-opengles3 --disable-opengles3_2"
+fi
+
+if [ "${VULKAN_SUPPORT}" = "yes" ]
+then
+    PKG_DEPENDS_TARGET+=" vulkan-loader vulkan-headers"
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-vulkan --enable-vulkan_display"
+fi
+
 pre_configure_target() {
   CFLAGS+=" -DUDEV_TOUCH_SUPPORT"
   CXXFLAGS+=" -DUDEV_TOUCH_SUPPORT"
   TARGET_CONFIGURE_OPTS=""
-  PKG_CONFIGURE_OPTS_TARGET="	--disable-qt \
-				--enable-alsa \
-				--enable-udev \
-				--disable-opengl1 \
-				--disable-opengl \
-				--disable-opengles \
-				--disable-opengles3 \
-				--disable-opengles3_2 \
-				--disable-wayland \
-				--disable-x11 \
-				--enable-zlib \
-				--enable-freetype \
-				--disable-discord \
-				--disable-vg \
-				--disable-sdl \
-				--enable-sdl2 \
-				--enable-ffmpeg"
-
-  case ${DEVICE} in
-    RK3566-X55)
-      PKG_DEPENDS_TARGET+=" librga libgo2"
-      PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
-    ;;
-    *)
-      PKG_CONFIGURE_OPTS_TARGET+=" --disable-odroidgo2"
-    ;;
-  esac
-
-  case ${ARCH} in
-    arm)
-      PKG_CONFIGURE_OPTS_TARGET+=" --enable-neon"
-    ;;
-    aarch64)
-      PKG_CONFIGURE_OPTS_TARGET+=" --disable-neon"
-    ;;
-    *)
-  esac
-
-  if [ "${DISPLAYSERVER}" = "wl" ]; then
-    PKG_DEPENDS_TARGET+=" wayland ${WINDOWMANAGER}"
-    PKG_CONFIGURE_OPTS_TARGET+=" --enable-wayland"
-  fi
-
-  if [ ! "${OPENGL}" = "no" ]; then
-      PKG_DEPENDS_TARGET+=" ${OPENGL} glu libglvnd"
-      PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengl"
-  else
-      PKG_CONFIGURE_OPTS_TARGET+=" --disable-opengl"
-  fi
-
-  if [ "${OPENGLES_SUPPORT}" = yes ] && \
-     [[ ! "${ARCH}" =~ i*86|x86_64 ]]; then
-      PKG_DEPENDS_TARGET+=" ${OPENGLES}"
-      PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles --enable-opengles3 --enable-opengles3_2 --enable-kms"
-  else
-      PKG_CONFIGURE_OPTS_TARGET+=" --disable-opengles --disable-opengles3 --disable-opengles3_2"
-  fi
-
-  if [ "${VULKAN_SUPPORT}" = "yes" ]
-  then
-      PKG_DEPENDS_TARGET+=" vulkan-loader vulkan-headers"
-      PKG_CONFIGURE_OPTS_TARGET+=" --enable-vulkan --enable-vulkan_display"
-  fi
 
   cd ${PKG_BUILD}
 }
@@ -97,8 +97,6 @@ makeinstall_target() {
   mkdir -p ${INSTALL}/usr/bin
   cp ${PKG_BUILD}/retroarch ${INSTALL}/usr/bin
   mkdir -p ${INSTALL}/usr/share/retroarch/filters
-
-  cp ${PKG_DIR}/scripts/mkcontroller ${INSTALL}/usr/bin
 
   case ${ARCH} in
     aarch64)
