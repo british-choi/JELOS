@@ -30,16 +30,19 @@ else
   SSID="$(get_setting wifi.ssid)" 2>/dev/null
 fi
 
-if [ ! "${WIFI_TYPE}" = "0" ]
-then
-  SSID="${SSID}_np"
-fi
-
 if [ ! -z "${3}" ]
 then
   PSK="${3}"
 else
   PSK="$(get_setting wifi.key)" 2>/dev/null
+fi
+
+
+if [ "${WIFI_TYPE}" = "1" ]
+then
+  GENERATED=($(awk '! /^HW_|BUILD_DATE/ {print}' /etc/os-release | md5sum))
+  SSID="${GENERATED[0]:0:10}"
+  PSK="${GENERATED[0]: -10}"
 fi
 
 if [ ! -d "" ]
@@ -91,6 +94,7 @@ wifi_service() {
 connect_wifi() {
   systemctl restart connman 2>/dev/null
   connmanctl enable wifi 2>/dev/null
+  connmanctl connect $(connmanctl services 2>&1 | awk '/\s'${SSID}'\s/ {gsub(/^\*[A-z][A-z]/,""); print $2}') 2>/dev/null
   set_powersave 2>/dev/null
 }
 

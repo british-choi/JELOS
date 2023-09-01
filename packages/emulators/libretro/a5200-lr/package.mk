@@ -20,7 +20,7 @@
 ################################################################################
 
 PKG_NAME="a5200-lr"
-PKG_VERSION="cee3ff11f43615a49fba6c7e9a3151fc48b6a91f"
+PKG_VERSION="0942c88d64cad6853b539f51b39060a9de0cbcab"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

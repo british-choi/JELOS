@@ -1,5 +1,5 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index d4bf51fda..69c4788bb 100644
+index c832c7f5f..f50dc7bab 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
 @@ -16614,6 +16614,28 @@ static const struct GameConfig ConfigTable[] =
@@ -31,25 +31,7 @@ index d4bf51fda..69c4788bb 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -22095,7 +22117,7 @@ struct BurnDriver BurnDrvCpsFfightbl = {
- 
- struct BurnDriver BurnDrvCpsFfightbla = {
- 	"ffightbla", "ffight", NULL, NULL, "1990",
--	"Final Fight (bootleg set 2 (with 2xYM2203 + 2xMSM5205), World))\0", NULL, "bootleg", "CPS1",
-+	"Final Fight (bootleg set 2 (with 2xYM2203 + 2xMSM5205), World)\0", NULL, "bootleg", "CPS1",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
- 	NULL, FfightblaRomInfo, FfightblaRomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
-@@ -22315,7 +22337,7 @@ struct BurnDriver BurnDrvCpsKnightsu = {
- 
- struct BurnDriver BurnDrvCpsKnightsj = {
- 	"knightsj", "knights", NULL, NULL, "1991",
--	"Knights of the Round (Japan 911127, B-Board 91634B-2))\0", NULL, "Capcom", "CPS1",
-+	"Knights of the Round (Japan 911127, B-Board 91634B-2)\0", NULL, "Capcom", "CPS1",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
- 	NULL, KnightsjRomInfo, KnightsjRomName, NULL, NULL, NULL, NULL, KnightsInputInfo, KnightsDIPInfo,
-@@ -26640,6 +26662,999 @@ struct BurnDriver BurnDrvCpsWofhs = {
+@@ -26640,6 +26662,998 @@ struct BurnDriver BurnDrvCpsWofhs = {
  
  #include "d_kenseim.h"
  
@@ -58,8 +40,8 @@ index d4bf51fda..69c4788bb 100644
 +//============================================================
 +
 +static struct BurnRomInfo Area88kaRomDesc[] = {
-+	{ "ark_36.12f",    0x020000, 0xfdf943f8, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
-+	{ "ark_42.12h",    0x020000, 0x12d6b949, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
++	{ "ark_36.12f",    0x020000, 0x1456a612, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
++	{ "ark_42.12h",    0x020000, 0x9c41ba64, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_37.13f",    0x020000, 0xab132921, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_43.13h",    0x020000, 0xaa9f3209, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_34.10f",    0x020000, 0x862d6acd, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
@@ -98,8 +80,8 @@ index d4bf51fda..69c4788bb 100644
 +STD_ROM_FN(Area88ka)
 +
 +static struct BurnRomInfo Area88kbRomDesc[] = {
-+	{ "ark_36.12f",    0x020000, 0xfdf943f8, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
-+	{ "ark_42.12h",    0x020000, 0x12d6b949, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
++	{ "ark_36.12f",    0x020000, 0x1456a612, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
++	{ "ark_42.12h",    0x020000, 0x9c41ba64, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_37.13f",    0x020000, 0xab132921, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_43.13h",    0x020000, 0xaa9f3209, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
 +	{ "ark_34.10f",    0x020000, 0x862d6acd, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_BYTESWAP },
@@ -831,7 +813,6 @@ index d4bf51fda..69c4788bb 100644
 +	{ "rtk_22.11c",    0x020000, 0xaa0780bd, BRF_GRA | CPS1_TILES },
 +
 +	{ "rt_23.13b",     0x010000, 0xabfca165, BRF_PRG | CPS1_Z80_PROGRAM },
-+//  { "rt_23.13b",     0x010000, 0x7d5a77a7, BRF_PRG | CPS1_Z80_PROGRAM }, // dumped from another board, 1 byte different, pcb verified
 +
 +	{ "rt_30.12c",     0x020000, 0x26b211ab, BRF_SND | CPS1_OKIM6295_SAMPLES },
 +	{ "rt_31.13c",     0x020000, 0xdbe64ad0, BRF_SND | CPS1_OKIM6295_SAMPLES },
@@ -1050,7 +1031,7 @@ index d4bf51fda..69c4788bb 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index cba1e108a..6ae542d65 100644
+index cba1e108a..ded9a6f1c 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -1088,16 +1069,7 @@ index cba1e108a..6ae542d65 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -13957,7 +13985,7 @@ struct BurnDriver BurnDrvCpsNwarrud = {
- 
- struct BurnDriver BurnDrvCpsProgearud = {
- 	"progearud", "progear", NULL, NULL, "2001",
--	"Progear(010117 USA Phoenix Edition)\0", NULL, "bootleg", "CPS2",
-+	"Progear (010117 USA Phoenix Edition)\0", NULL, "bootleg", "CPS2",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2 | HARDWARE_CAPCOM_CPS2_SIMM, GBF_HORSHOOT, 0,
- 	NULL, ProgearudRomInfo, ProgearudRomName, NULL, NULL, NULL, NULL, ProgearInputInfo, NULL,
-@@ -14569,3 +14597,1031 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
+@@ -14569,3 +14597,990 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
  	Sfa2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1143,7 +1115,7 @@ index cba1e108a..6ae542d65 100644
 +};
 +
 +static struct BurnRomInfo CsclubkRomDesc[] = {
-+	{ "csck.03",       0x080000, 0xf64cc8e5, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "csck.03",       0x080000, 0xbd9fdb94, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "cscj.04",       0x080000, 0x60c632bb, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "cscj.05",       0x080000, 0xad042003, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "cscj.06",       0x080000, 0x169e4d40, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
@@ -1176,79 +1148,38 @@ index cba1e108a..6ae542d65 100644
 +};
 +
 +static struct BurnRomInfo DdtodkRomDesc[] = {
-+	{ "dadk.03c",      0x080000, 0x84ba3e82, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dadk.04c",      0x080000, 0x8112a66f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dadj.05c",      0x080000, 0x189b15fe, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dadk.06a",      0x080000, 0xd842d2f6, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dadk.03c",      0x080000, 0xfc8b949f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dadk.04c",      0x080000, 0xf931f325, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dadk.05c",      0x080000, 0x3fc42c7e, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dadk.06a",      0x080000, 0xe9fc6884, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "dad.07a",       0x080000, 0xb3480ec3, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +
-+	{ "dadk.13m",      0x200000, 0x7fbf1c70, CPS2_GFX | BRF_GRA },
-+	{ "dadk.15m",      0x200000, 0x6da65188, CPS2_GFX | BRF_GRA },
-+	{ "dadk.17m",      0x200000, 0x4e09547a, CPS2_GFX | BRF_GRA },
-+	{ "dadk.19m",      0x200000, 0x36654430, CPS2_GFX | BRF_GRA },
-+	{ "dadk.14m",      0x100000, 0x35b92a56, CPS2_GFX | BRF_GRA },
-+	{ "dadk.16m",      0x100000, 0x80987980, CPS2_GFX | BRF_GRA },
-+	{ "dadk.18m",      0x100000, 0x7834d686, CPS2_GFX | BRF_GRA },
-+	{ "dadk.20m",      0x100000, 0xf95aecc5, CPS2_GFX | BRF_GRA },
++	{ "dadk.13m",      0x200000, 0xd89b6f34, CPS2_GFX | BRF_GRA },
++	{ "dadk.15m",      0x200000, 0x09939159, CPS2_GFX | BRF_GRA },
++	{ "dadk.17m",      0x200000, 0xf1678c95, CPS2_GFX | BRF_GRA },
++	{ "dadk.19m",      0x200000, 0x62bbaec0, CPS2_GFX | BRF_GRA },
++	{ "dadk.14m",      0x100000, 0xd36dfb89, CPS2_GFX | BRF_GRA },
++	{ "dadk.16m",      0x100000, 0xd3c7bde7, CPS2_GFX | BRF_GRA },
++	{ "dadk.18m",      0x100000, 0x9ee00759, CPS2_GFX | BRF_GRA },
++	{ "dadk.20m",      0x100000, 0xaa0528a2, CPS2_GFX | BRF_GRA },
 +
 +	{ "dad.01",        0x020000, 0x3f5e2424, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
 +
 +	{ "dad.11m",       0x200000, 0x0c499b67, CPS2_QSND | BRF_SND },
 +	{ "dad.12m",       0x200000, 0x2f0b5a4e, CPS2_QSND | BRF_SND },
 +
-+	{ "ddtodj.key",    0x000014, 0x5414dfca, CPS2_ENCRYPTION_KEY },
++	{ "ddtoda.key",    0x000014, 0xe5e8d1b8, CPS2_ENCRYPTION_KEY },
 +};
 +
 +STD_ROM_PICK(Ddtodk)
 +STD_ROM_FN(Ddtodk)
 +
 +struct BurnDriver BurnDrvCpsDdtodk = {
-+	"ddtodk", "ddtod", NULL, NULL, "2022",
++	"ddtodk", "ddtod", NULL, NULL, "2023",
 +	"Dungeons & Dragons: Tower of Doom (940412 Korean Translation)\0", NULL, "Capcom", "CPS2",
 +	L"\uB358\uC804\uC2A4 & \uB4DC\uB798\uACE4\uC2A4: \uD0C0\uC6CC \uC624\uBE0C \uB460 (940412 \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Dungeons & Dragons: Tower of Doom (940412 Korean Translation)\0", NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
 +	NULL, DdtodkRomInfo, DdtodkRomName, NULL, NULL, NULL, NULL, DdtodInputInfo, NULL,
-+	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
-+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
-+};
-+
-+static struct BurnRomInfo Ddsomav4RomDesc[] = {
-+	{ "dd2a_v4.03g",   0x080000, 0xe28c61f2, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2a_v4.04g",   0x080000, 0x145efa6f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.05g",       0x080000, 0x5eb1991c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.06g",       0x080000, 0xc26b5e55, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.07",        0x080000, 0x909a0b8b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.08",        0x080000, 0xe53c4d01, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.09",        0x080000, 0x5f86279f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.10",        0x080000, 0xad954c26, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+
-+	{ "dd2.13m",       0x400000, 0xa46b4e6e, CPS2_GFX | BRF_GRA },
-+	{ "dd2.15m",       0x400000, 0xd5fc50fc, CPS2_GFX | BRF_GRA },
-+	{ "dd2.17m",       0x400000, 0x837c0867, CPS2_GFX | BRF_GRA },
-+	{ "dd2.19m",       0x400000, 0xbb0ec21c, CPS2_GFX | BRF_GRA },
-+	{ "dd2.14m",       0x200000, 0x6d824ce2, CPS2_GFX | BRF_GRA },
-+	{ "dd2.16m",       0x200000, 0x79682ae5, CPS2_GFX | BRF_GRA },
-+	{ "dd2.18m",       0x200000, 0xacddd149, CPS2_GFX | BRF_GRA },
-+	{ "dd2.20m",       0x200000, 0x117fb0c0, CPS2_GFX | BRF_GRA },
-+
-+	{ "dd2.01",        0x020000, 0x99d657e5, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+	{ "dd2.02",        0x020000, 0x117a3824, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+
-+	{ "dd2.11m",       0x200000, 0x98d0c325, CPS2_QSND | BRF_SND },
-+	{ "dd2.12m",       0x200000, 0x5ea2e7fa, CPS2_QSND | BRF_SND },
-+
-+	{ "ddsoma.key",    0x000014, 0x8c3cc560, CPS2_ENCRYPTION_KEY },
-+};
-+
-+STD_ROM_PICK(Ddsomav4)
-+STD_ROM_FN(Ddsomav4)
-+
-+struct BurnDriver BurnDrvCpsDdsomav4 = {
-+	"ddsomav4", "ddsom", NULL, NULL, "1996",
-+	"Dungeons & Dragons: Shadow Over Mystara (960619 Asia, 1 vs 4 Hack)\0", NULL, "Capcom", "CPS2",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
-+	NULL, Ddsomav4RomInfo, Ddsomav4RomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
 +	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
@@ -1493,10 +1424,10 @@ index cba1e108a..6ae542d65 100644
 +	{ "pcf.06",        0x080000, 0xea6f13ea, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "pcf.07",        0x080000, 0x5ac6d5ea, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +
-+	{ "pcfk.13m",      0x400000, 0x54b3cae4, CPS2_GFX | BRF_GRA },
-+	{ "pcfk.15m",      0x400000, 0x7dd93dcc, CPS2_GFX | BRF_GRA },
-+	{ "pcfk.17m",      0x400000, 0x7b8b32dd, CPS2_GFX | BRF_GRA },
-+	{ "pcfk.19m",      0x400000, 0x16b4c270, CPS2_GFX | BRF_GRA },
++	{ "pcfk.13m",      0x400000, 0x068c3659, CPS2_GFX | BRF_GRA },
++	{ "pcfk.15m",      0x400000, 0x0d93bbdd, CPS2_GFX | BRF_GRA },
++	{ "pcfk.17m",      0x400000, 0x946ad5cb, CPS2_GFX | BRF_GRA },
++	{ "pcfk.19m",      0x400000, 0x8945c67f, CPS2_GFX | BRF_GRA },
 +	{ "pcf.14m",       0x100000, 0x0383897c, CPS2_GFX | BRF_GRA },
 +	{ "pcf.16m",       0x100000, 0x76f91084, CPS2_GFX | BRF_GRA },
 +	{ "pcf.18m",       0x100000, 0x756c3754, CPS2_GFX | BRF_GRA },
@@ -1515,7 +1446,7 @@ index cba1e108a..6ae542d65 100644
 +STD_ROM_FN(Pfghtk)
 +
 +struct BurnDriver BurnDrvCpsPfghtk = {
-+	"pfghtk", "sgemf", NULL, NULL, "2021",
++	"pfghtk", "sgemf", NULL, NULL, "2023",
 +	"Pocket Fighter (970904 Korean Translation)\0", NULL, "Capcom", "CPS2",
 +	L"\uD3EC\uCF13 \uD30C\uC774\uD130 (970904 \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Pocket Fighter (970904 Korean Translation)\0", NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2, GBF_VSFIGHT, FBF_SF,
@@ -2129,120 +2060,6 @@ index cba1e108a..6ae542d65 100644
 +	XmcotaInit, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
-diff --git a/src/burn/drv/cave/d_cv1k.cpp b/src/burn/drv/cave/d_cv1k.cpp
-index 13975aed0..7214a3fc7 100644
---- a/src/burn/drv/cave/d_cv1k.cpp
-+++ b/src/burn/drv/cave/d_cv1k.cpp
-@@ -1106,7 +1106,7 @@ STD_ROM_FN(deathsml)
- struct BurnDriver BurnDrvDeathsml = {
- 	"deathsml", NULL, NULL, NULL, "2007",
- 	"Deathsmiles (2007/10/09 MASTER VER)\0", NULL, "Cave (AMI license)", "CA017",
--	L"Deathsmiles\0\uc730\ub930\ub930\ua430\ueb30\uba30 (2007/10/09 MASTER VER)\0", NULL, NULL, NULL,
-+	L"Deathsmiles\0\u30C7\u30B9\u30B9\u30DE\u30A4\u30EB\u30BA (2007/10/09 MASTER VER)\0", NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_CV1000, GBF_HORSHOOT, 0,
- 	NULL, deathsmlRomInfo, deathsmlRomName, NULL, NULL, NULL, NULL, Cv1kInputInfo, Cv1kDIPInfo,
- 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x10000,
-@@ -1356,7 +1356,7 @@ STD_ROM_FN(dsmbl)
- struct BurnDriver BurnDrvDsmbl = {
- 	"dsmbl", NULL, NULL, NULL, "2008",
- 	"Deathsmiles MegaBlack Label (2008/10/06 MEGABLACK LABEL VER)\0", NULL, "Cave (AMI license)", "CA017B",
--	NULL, NULL, NULL, NULL,
-+	L"Deathsmiles MegaBlack Label\0\u30C7\u30B9\u30B9\u30DE\u30A4\u30EB\u30BA \u30E1\u30AC\u30D6\u30E9\u30C3\u30AF\u30EC\u30FC\u30D9\u30EB (2008/10/06 MEGABLACK LABEL VER)\0", NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_CV1000, GBF_HORSHOOT, 0,
- 	NULL, dsmblRomInfo, dsmblRomName, NULL, NULL, NULL, NULL, Cv1kInputInfo, Cv1kDIPInfo,
- 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x10000,
-diff --git a/src/burn/drv/cave/d_pwrinst2.cpp b/src/burn/drv/cave/d_pwrinst2.cpp
-index dc70da69d..3668b57a6 100644
---- a/src/burn/drv/cave/d_pwrinst2.cpp
-+++ b/src/burn/drv/cave/d_pwrinst2.cpp
-@@ -1202,7 +1202,7 @@ struct BurnDriver BurnDrvPwrinst2j = {
- 
- struct BurnDriver BurnDrvPwrinst2k = {
- 	"pwrinst2k", "pwrinst2", NULL, NULL, "1994",
--	"Power instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
-+	"Power Instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_16BIT_ONLY | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_68K_Z80, GBF_VSFIGHT, FBF_PWRINST,
- 	NULL, pwrinst2kRomInfo, pwrinst2kRomName, NULL, NULL, NULL, NULL, pwrinst2InputInfo, NULL,
-diff --git a/src/burn/drv/irem/d_m57.cpp b/src/burn/drv/irem/d_m57.cpp
-index 6ced6b533..3e7b765eb 100644
---- a/src/burn/drv/irem/d_m57.cpp
-+++ b/src/burn/drv/irem/d_m57.cpp
-@@ -237,12 +237,9 @@ static INT32 DrvGfxDecode() // 0, 100
- 
- static INT32 DrvInit()
- {
--	AllMem = NULL;
--	MemIndex();
--	INT32 nLen = MemEnd - (UINT8 *)0;
--	if ((AllMem = (UINT8 *)BurnMalloc(nLen)) == NULL) return 1;
--	memset(AllMem, 0, nLen);
--	MemIndex();
-+	BurnAllocMemIndex();
-+
-+	BurnSetRefreshRate(57.00);
- 
- 	{
- 		if (BurnLoadRom(DrvZ80ROM   + 0x0000,  0, 1)) return 1;
-@@ -308,18 +305,23 @@ static INT32 DrvExit()
- 	ZetExit();
- 	IremSoundExit();
- 
--	BurnFree(AllMem);
-+	BurnFreeMemIndex();
- 
- 	return 0;
- }
- 
--static void DrvPaletteInitOne(UINT8 *prom, UINT32 *dst, INT32 len)
-+static void DrvPaletteInitOne(UINT8 *prom, UINT32 *dst, INT32 len, INT32 tiles)
- {
- 	for (INT32 i = 0; i < len; i++)
- 	{
- 		INT32 bit0 = 0;
- 		INT32 bit1 = (*prom >> 6) & 0x01;
- 		INT32 bit2 = (*prom >> 7) & 0x01;
-+
-+		if (tiles && (i > 0x1f && i < 0x6a)) {
-+			bit1 = (*prom >> 7) & 0x01;
-+			bit2 = (*prom >> 6) & 0x01;
-+		}
- 		INT32 r = 0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2;
- 
- 		bit0 = (*prom >> 3) & 0x01;
-@@ -341,8 +343,8 @@ static void DrvPaletteInit()
- {
- 	UINT32 tmp[16];
- 
--	DrvPaletteInitOne(DrvColPROM + 0x000, DrvPalette, 0x100);
--	DrvPaletteInitOne(DrvColPROM + 0x100, tmp, 0x10);
-+	DrvPaletteInitOne(DrvColPROM + 0x000, DrvPalette, 0x100, 1);
-+	DrvPaletteInitOne(DrvColPROM + 0x100, tmp, 0x10, 0);
- 
- 	for (INT32 i = 0; i < 256; i++) {
- 		DrvPalette[0x100 + i] = tmp[(DrvColPROM[0x110 + i] & 0xf) ^ 0xf];
-@@ -462,7 +464,7 @@ static INT32 DrvFrame()
- 	}
- 
- 	INT32 nInterleave = MSM5205CalcInterleave(0, 3072000);
--	INT32 nCyclesTotal[2] = { 3072000 / 57, 894886 / 60 };
-+	INT32 nCyclesTotal[2] = { 3072000 / 57, 894886 / 57 };
- 	INT32 nCyclesDone[2] = { nExtraCycles[0], nExtraCycles[1] };
- 
- 	ZetOpen(0);
-diff --git a/src/burn/drv/irem/d_m72.cpp b/src/burn/drv/irem/d_m72.cpp
-index d40aca296..b1236069d 100644
---- a/src/burn/drv/irem/d_m72.cpp
-+++ b/src/burn/drv/irem/d_m72.cpp
-@@ -3680,7 +3680,7 @@ static INT32 hharryInit()
- 
- struct BurnDriver BurnDrvHharry = {
- 	"hharry", NULL, NULL, NULL, "1990",
--	"Hammerin' Harry (World, M81 hardware))\0", NULL, "Irem", "Irem M82",
-+	"Hammerin' Harry (World, M81 hardware)\0", NULL, "Irem", "Irem M82",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_IREM_M72, GBF_SCRFIGHT | GBF_PLATFORM, 0,
- 	NULL, hharryRomInfo, hharryRomName, NULL, NULL, NULL, NULL, CommonInputInfo, HharryDIPInfo,
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
 index 3b1127470..9e77ce45a 100644
 --- a/src/burn/drv/irem/d_m92.cpp
@@ -2396,28 +2213,28 @@ index 3b1127470..9e77ce45a 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index c368c50d1..b47949b68 100644
+index 83762f94b..81d4a6d2a 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -19346,7 +19346,7 @@ struct BurnDriver BurnDrvmd_rockman = {
+@@ -19382,7 +19382,7 @@ struct BurnDriver BurnDrvmd_rockman = {
  	"md_rockman", "md_megaman", NULL, NULL, "1994",
- 	"Rockman Mega World (Jpn)\0", NULL, "Capcom", "Sega Megadrive",
+ 	"Rockman Mega World (Japan)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
 -	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_PLATFORM, 0,
 +	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_EEPROM, GBF_PLATFORM, 0,
  	MegadriveGetZipName, md_rockmanRomInfo, md_rockmanRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -19364,7 +19364,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
+@@ -19400,7 +19400,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
  	"md_rockman1", "md_megaman", NULL, NULL, "1994",
- 	"Rockman Mega World (Jpn, Alt)\0", NULL, "Capcom", "Sega Megadrive",
+ 	"Rockman Mega World (Japan, Alt)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
 -	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_EEPROM, 1, HARDWARE_SEGA_MEGADRIVE, GBF_PLATFORM, 0,
 +	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_EEPROM, GBF_PLATFORM, 0,
  	MegadriveGetZipName, md_rockman1RomInfo, md_rockman1RomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -55216,3 +55216,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
+@@ -55191,3 +55191,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
  
@@ -2438,7 +2255,7 @@ index c368c50d1..b47949b68 100644
 +	"md_alisiadk", "md_alisiad", NULL, NULL, "2013",
 +	"Alisia Dragoon (Hack, Korean Translation)\0", NULL, "Game Arts", "Sega Megadrive",
 +	L"\uC54C\uB9AC\uC2DC\uC544 \uB4DC\uB77C\uAD70 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Alisia Dragoon (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_PLATFORM, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_PLATFORM, 0,
 +	MegadriveGetZipName, md_alisiadkRomInfo, md_alisiadkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2457,7 +2274,7 @@ index c368c50d1..b47949b68 100644
 +	"md_contrak", "md_contra", NULL, NULL, "2013",
 +	"Contra - The Hard Corps (Hack, Korean Translation)\0", NULL, "Konami", "Sega Megadrive",
 +	L"\uD63C\uB450\uB77C - \uB354 \uD558\uB4DC\uCF54\uC5B4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Contra - The Hard Corps (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN | GBF_PLATFORM, 0,
 +	MegadriveGetZipName, md_contrakRomInfo, md_contrakRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2476,7 +2293,7 @@ index c368c50d1..b47949b68 100644
 +	"md_elvientok", "md_elviento", NULL, NULL, "2009",
 +	"El Viento (Hack, Korean Translation)\0", NULL, "Wolf Team", "Sega Megadrive",
 +	L"\uC5D8 \uBE44\uC5D4\uD1A0 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0El Viento (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN | GBF_PLATFORM, 0,
 +	MegadriveGetZipName, md_elvientokRomInfo, md_elvientokRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2495,7 +2312,7 @@ index c368c50d1..b47949b68 100644
 +	"md_elemastk", "md_elemast", NULL, NULL, "2013",
 +	"Elemental Master (Hack, Korean Translation)\0", NULL, "Technosoft", "Sega Megadrive",
 +	L"\uC5D8\uB9AC\uBA58\uD0C8 \uB9C8\uC2A4\uD130 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Elemental Master (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_VERSHOOT, 0,
 +	MegadriveGetZipName, md_elemastkRomInfo, md_elemastkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2514,7 +2331,7 @@ index c368c50d1..b47949b68 100644
 +	"md_exilek", "md_exile", NULL, NULL, "2018",
 +	"Exile - Toki no Hazama e (Hack, Korean Translation)\0", NULL, "Riot", "Sega Megadrive",
 +	L"\uC5D1\uC790\uC77C - \uC2DC\uAC04\uC758 \uD2C8\uC0C8 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Exile - Toki no Hazama e (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_exilekRomInfo, md_exilekRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2533,7 +2350,7 @@ index c368c50d1..b47949b68 100644
 +	"md_gleylanck", "md_gleylanc", NULL, NULL, "2013",
 +	"GleyLancer (Hack, Korean Translation)\0", NULL, "NCS", "Sega Megadrive",
 +	L"\uAE00\uB808\uC774 \uB79C\uC11C (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0GleyLancer (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_HORSHOOT, 0,
 +	MegadriveGetZipName, md_gleylanckRomInfo, md_gleylanckRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2552,7 +2369,7 @@ index c368c50d1..b47949b68 100644
 +	"md_gunstark", "md_gunstar", NULL, NULL, "2017",
 +	"Gunstar Heroes (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uAC74\uC2A4\uD0C0 \uD788\uC5B4\uB85C\uC988 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Gunstar Heroes (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN | GBF_PLATFORM, 0,
 +	MegadriveGetZipName, md_gunstarkRomInfo, md_gunstarkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2570,7 +2387,7 @@ index c368c50d1..b47949b68 100644
 +	"md_ddanpeik", "md_ddanpei", NULL, NULL, "1992",
 +	"Honoo no Toukyuuji - Dodge Danpei (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uBD88\uAF43\uC758 \uD22C\uAD6C\uC544 - \uB3D7\uC9C0\uD0C4\uD3C9 / \uD53C\uAD6C\uC655 \uD1B5\uD0A4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Honoo no Toukyuuji - Dodge Danpei (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_EEPROM, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_EEPROM, GBF_SPORTSMISC, 0,
 +	MegadriveGetZipName, md_ddanpeikRomInfo, md_ddanpeikRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2589,7 +2406,7 @@ index c368c50d1..b47949b68 100644
 +	"md_landstlkk", "md_landstlk", NULL, NULL, "2013",
 +	"Landstalker - Koutei no Zaihou (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uB79C\uB4DC\uC2A4\uD1A0\uCEE4 - \uD669\uC81C\uC758 \uC7AC\uBCF4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Landstalker - Koutei no Zaihou (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM | HARDWARE_SEGA_MEGADRIVE_SRAM_10000, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM | HARDWARE_SEGA_MEGADRIVE_SRAM_10000, GBF_PLATFORM | GBF_RPG, 0,
 +	MegadriveGetZipName, md_landstlkkRomInfo, md_landstlkkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2608,7 +2425,7 @@ index c368c50d1..b47949b68 100644
 +	"md_valisk", "md_valis", NULL, NULL, "2009",
 +	"Mugen Senshi Valis (Hack, Korean Translation)\0", NULL, "Riot", "Sega Megadrive",
 +	L"\uBABD\uD658\uC804\uC0AC \uBC14\uB9AC\uC2A4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Mugen Senshi Valis (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
 +	MegadriveGetZipName, md_valiskRomInfo, md_valiskRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2627,7 +2444,7 @@ index c368c50d1..b47949b68 100644
 +	"md_mushak", "md_musha", NULL, NULL, "2017",
 +	"Musha Aleste - Full Metal Fighter Ellinor (Hack, Korean Translation)\0", NULL, "Toaplan", "Sega Megadrive",
 +	L"\uBB34\uC790 \uC54C\uB808\uC2A4\uD130 - \uD480 \uBA54\uD0C8 \uD30C\uC774\uD130 \uC5D8\uB9AC\uB178\uC5B4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Musha Aleste - Full Metal Fighter Ellinor (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_VERSHOOT, 0,
 +	MegadriveGetZipName, md_mushakRomInfo, md_mushakRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2646,7 +2463,7 @@ index c368c50d1..b47949b68 100644
 +	"md_pstar4k", "md_pstar4", NULL, NULL, "2014",
 +	"Phantasy Star - Sennenki no Owari ni (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uD310\uD0C0\uC9C0 \uC2A4\uD0C0 - \uCC9C\uB144\uAE30\uC758 \uB05D\uC5D0 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Phantasy Star - Sennenki no Owari ni (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_pstar4kRomInfo, md_pstar4kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2665,7 +2482,7 @@ index c368c50d1..b47949b68 100644
 +	"md_pstar2k", "md_pstar2", NULL, NULL, "2013",
 +	"Phantasy Star II - Kaerazaru Toki no Owari ni (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uD310\uD0C0\uC9C0 \uC2A4\uD0C0 II - \uB3CC\uC544\uC624\uC9C0 \uC54A\uC744 \uC2DC\uAC04\uC758 \uB05D\uC5D0\uC11C (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Phantasy Star II - Kaerazaru Toki no Owari ni (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_pstar2kRomInfo, md_pstar2kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2684,7 +2501,7 @@ index c368c50d1..b47949b68 100644
 +	"md_sdvalisk", "md_sydvalis", NULL, NULL, "2009",
 +	"SD Valis (Hack, Korean Translation)\0", NULL, "Laser Soft", "Sega Megadrive",
 +	L"SD \uBC14\uB9AC\uC2A4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0SD Valis (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
 +	MegadriveGetZipName, md_sdvaliskRomInfo, md_sdvaliskRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2703,7 +2520,7 @@ index c368c50d1..b47949b68 100644
 +	"md_shindarkk", "md_shindark", NULL, NULL, "2013",
 +	"Shining and the Darkness (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uC0E4\uC774\uB2DD \uC564 \uB354 \uB2E4\uD06C\uB2C8\uC2A4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Shining and the Darkness (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_STRATEGY, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_shindarkkRomInfo, md_shindarkkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2722,7 +2539,7 @@ index c368c50d1..b47949b68 100644
 +	"md_shinfrcek", "md_shinfrce", NULL, NULL, "2013",
 +	"Shining Force - Kamigami no Isan (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uC0E4\uC774\uB2DD \uD3EC\uC2A4 - \uC2E0\uB4E4\uC758 \uC720\uC0B0 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Shining Force - Kamigami no Isan (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_STRATEGY, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_shinfrcekRomInfo, md_shinfrcekRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2741,7 +2558,7 @@ index c368c50d1..b47949b68 100644
 +	"md_shinfrc2k", "md_shinfrc2", NULL, NULL, "2013",
 +	"Shining Force II - Koe no Fuuin (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uC0E4\uC774\uB2DD \uD3EC\uC2A4 II - \uACE0\uB300\uC758 \uBD09\uC778 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Shining Force II - Koe no Fuuin (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_STRATEGY, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_RPG, 0,
 +	MegadriveGetZipName, md_shinfrc2kRomInfo, md_shinfrc2kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2760,7 +2577,7 @@ index c368c50d1..b47949b68 100644
 +	"md_thork2", "md_thor", NULL, NULL, "2015",
 +	"Story of Thor, The - Hikari o Tsugumono (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uB354 \uC2A4\uD1A0\uB9AC \uC624\uBE0C \uB3C4\uC5B4 - \uBE5B\uC744 \uC787\uB294 \uC790 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Story of Thor, The - Hikari o Tsugumono (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_ADV, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_ACTION | GBF_ADV, 0,
 +	MegadriveGetZipName, md_thork2RomInfo, md_thork2RomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2779,7 +2596,7 @@ index c368c50d1..b47949b68 100644
 +	"md_sfzonek", "md_sfzone", NULL, NULL, "2013",
 +	"Super Fantasy Zone (Hack, Korean Translation)\0", NULL, "Sunsoft", "Sega Megadrive",
 +	L"\uC288\uD37C \uD310\uD0C0\uC9C0 \uC874 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Super Fantasy Zone (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_HORSHOOT, 0,
 +	MegadriveGetZipName, md_sfzonekRomInfo, md_sfzonekRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2798,7 +2615,7 @@ index c368c50d1..b47949b68 100644
 +	"md_supshin2k", "md_shinobi3", NULL, NULL, "2013",
 +	"The Super Shinobi II (Hack, Korean Translation)\0", NULL, "Sega", "Sega Megadrive",
 +	L"\uB354 \uC288\uD37C \uC2DC\uB178\uBE44 II (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0The Super Shinobi II (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_SCRFIGHT, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_SCRFIGHT, 0,
 +	MegadriveGetZipName, md_supshin2kRomInfo, md_supshin2kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2817,7 +2634,7 @@ index c368c50d1..b47949b68 100644
 +	"md_twinkletk", "md_twinklet", NULL, NULL, "2013",
 +	"Twinkle Tale (Hack, Korean Translation)\0", NULL, "Toyo Records", "Sega Megadrive",
 +	L"\uD2B8\uC719\uD074 \uD14C\uC77C (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Twinkle Tale (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_RUNGUN, 0,
 +	MegadriveGetZipName, md_twinkletkRomInfo, md_twinkletkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2836,7 +2653,7 @@ index c368c50d1..b47949b68 100644
 +	"md_valis3k", "md_valis3", NULL, NULL, "2008",
 +	"Valis III (Hack, Korean Translation)\0", NULL, "Reno", "Sega Megadrive",
 +	L"\uBC14\uB9AC\uC2A4 III (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Valis III (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
 +	MegadriveGetZipName, md_valis3kRomInfo, md_valis3kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2855,7 +2672,7 @@ index c368c50d1..b47949b68 100644
 +	"md_immortalk", "md_immortal", NULL, NULL, "2011",
 +	"Immortal, The (Hack, Korean Translation)\0", NULL, "Electronic Arts", "Sega Megadrive",
 +	L"\uB354 \uC774\uBAA8\uD0C8 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0The Immortal (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE, GBF_ACTION | GBF_RPG, 0,
 +	MegadriveGetZipName, md_immortalkRomInfo, md_immortalkRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
@@ -2874,36 +2691,16 @@ index c368c50d1..b47949b68 100644
 +	"md_ys3k", "md_ys3", NULL, NULL, "2013",
 +	"Ys - Wanderers from Ys (Hack, Korean Translation)\0", NULL, "Reno", "Sega Megadrive",
 +	L"\uC774\uC2A4 - \uC6D0\uB354\uB7EC\uC2A4 \uD504\uB86C \uC774\uC2A4 (\uD575, \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Ys - Wanderers from Ys (Hack, Korean Translation)\0", NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE, 2, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_MISC, 0,
++	BDF_GAME_WORKING | BDF_16BIT_ONLY | BDF_CLONE | BDF_HACK, 1, HARDWARE_SEGA_MEGADRIVE | HARDWARE_SEGA_MEGADRIVE_PCB_SEGA_SRAM, GBF_ACTION | GBF_RPG, 0,
 +	MegadriveGetZipName, md_ys3kRomInfo, md_ys3kRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 +	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 1ea164ed2..bc2d1dfa6 100644
+index 8f13647e6..5e1f7f232 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
-@@ -908,6 +908,10 @@ static struct BurnDIPInfo neoCDDIPList[] = {
- 	{0x01,	0x01, 0x03,	0x00, "Neo Geo CDZ"						},
- 	{0x01,	0x01, 0x03,	0x01, "Universe BIOS (Hack, Ver. 3.3)"	},
- 	{0x01,	0x01, 0x03,	0x02, "Universe BIOS (Hack, Ver. 3.2)"	},
-+
-+	{0,		0xFD, 0,	2,    "CD Loading Speed"				},
-+	{0x01,	0x01, 0x80,	0x00, "Normal"							},
-+	{0x01,	0x01, 0x80,	0x80, "Super Speed"						},
- };
- 
- STDDIPINFO(neoCD)
-@@ -11398,7 +11402,7 @@ static INT32 samsh5spInit()
- struct BurnDriver BurnDrvsamsh5sp = {
- 	"samsh5sp", NULL, "neogeo", NULL, "2004",
- 	"Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)\0", NULL, "Yuki Enterprise / SNK Playmore", "Neo Geo MVS",
--	L"Samurai Shodown V Special\0\u30B5\u30E0\u30E9\u30A4\u30B9\u30D4\u30EA\u30C3\u30C4\u96F6 Special  (NGM-2720)\0", NULL, NULL, NULL,
-+	L"Samurai Shodown V Special\0\u30B5\u30E0\u30E9\u30A4\u30B9\u30D4\u30EA\u30C3\u30C4\u96F6 Special (NGM-2720)\0", NULL, NULL, NULL,
- 	BDF_GAME_WORKING, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_SAMSHO,
- 	NULL, samsh5spRomInfo, samsh5spRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
- 	samsh5spInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-@@ -21499,7 +21503,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
+@@ -21531,7 +21531,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
  
  
  // Metal Slug Unity(Added Timer Ver. 2021-02-05)
@@ -2912,7 +2709,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslugunityRomDesc[] = {
  	{ "201-p1uni.p1",	0x200000, 0xa3186dfd, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21521,7 +21525,7 @@ struct BurnDriver BurnDrvmslugunity = {
+@@ -21553,7 +21553,7 @@ struct BurnDriver BurnDrvmslugunity = {
  };
  
  
@@ -2921,7 +2718,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslugaksRomDesc[] = {
  	/* Multifunction - 20180430 */
-@@ -21617,7 +21621,7 @@ struct BurnDriver BurnDrvmslugaks = {
+@@ -21649,7 +21649,7 @@ struct BurnDriver BurnDrvmslugaks = {
  
  
  // Metal Slug 2 - Super Vehicle-001/II Unity (Added Timer Ver. 2021-01-22)
@@ -2930,7 +2727,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug2unityRomDesc[] = {
  	{ "241-p1uni.p1",	0x100000, 0x1562cf23, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21641,7 +21645,7 @@ struct BurnDriver BurnDrvmslug2unity = {
+@@ -21673,7 +21673,7 @@ struct BurnDriver BurnDrvmslug2unity = {
  
  
  // Metal Slug 2 - Friendly Fire FC2 (Hack)
@@ -2939,7 +2736,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  // 20210415
  
  static struct BurnRomInfo mslug2fmRomDesc[] = {
-@@ -21697,7 +21701,7 @@ struct BurnDriver BurnDrvmslug2dd = {
+@@ -21729,7 +21729,7 @@ struct BurnDriver BurnDrvmslug2dd = {
  };
  
  
@@ -2948,7 +2745,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug2aksRomDesc[] = {
  	/* Multifunction - 20170509 */
-@@ -21855,7 +21859,7 @@ struct BurnDriver BurnDrvmslug2eg = {
+@@ -21887,7 +21887,7 @@ struct BurnDriver BurnDrvmslug2eg = {
  
  
  // Metal Slug X - Super Vehicle-001 Unity (Added Timer Ver. 2021-01-23)
@@ -2957,7 +2754,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslugxunityRomDesc[] = {
  	{ "250-p1uni.p1",	0x100000, 0x36102d34, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22049,7 +22053,7 @@ struct BurnDriver BurnDrvmslugx2r = {
+@@ -22081,7 +22081,7 @@ struct BurnDriver BurnDrvmslugx2r = {
  };
  
  
@@ -2966,7 +2763,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslugxaksRomDesc[] = {
  	/* Legendary - 20230311*/
-@@ -22202,7 +22206,7 @@ struct BurnDriver BurnDrvmslugxaks = {
+@@ -22234,7 +22234,7 @@ struct BurnDriver BurnDrvmslugxaks = {
  
  
  // Metal Slug 3 Unity (Added Timer Ver. 2021-02-13)
@@ -2975,7 +2772,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug3unityRomDesc[] = {
  	/* The SMA for this release has a green colour marking; the older revision has a white colour marking */
-@@ -22259,7 +22263,7 @@ struct BurnDriver BurnDrvmslug3i = {
+@@ -22291,7 +22291,7 @@ struct BurnDriver BurnDrvmslug3i = {
  
  
  // Metal Slug 3 (1v2 Mode, Hack)
@@ -2984,7 +2781,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  // 20190511
  
  static struct BurnRomInfo mslug31v2RomDesc[] = {
-@@ -22656,7 +22660,7 @@ struct BurnDriver BurnDrvmslug3cb = {
+@@ -22688,7 +22688,7 @@ struct BurnDriver BurnDrvmslug3cb = {
  };
  
  
@@ -2992,8 +2789,8 @@ index 1ea164ed2..bc2d1dfa6 100644
 +// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug3aksRomDesc[] = {
- 	/* Legendary - 20230612 */
-@@ -22779,7 +22783,7 @@ struct BurnDriver BurnDrvmslug3aks = {
+ 	/* Legendary - 20230813 */
+@@ -22811,7 +22811,7 @@ struct BurnDriver BurnDrvmslug3aks = {
  
  
  // Metal Slug 4 Unity (Added Timer Ver. 2021-01-30)
@@ -3002,7 +2799,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug4unityRomDesc[] = {
  	{ "263-p1uni.p1",	0x100000, 0xef3501b6, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22951,7 +22955,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
+@@ -22983,7 +22983,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
  
  	MSLUG4_DECRYPTION_COMPONENT
  
@@ -3011,7 +2808,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  	{ "263-p1a.ep1",	0x100000, 0xb342c468, 1 | BRF_ESS | BRF_PRG }, // 14 68K code diff patch
  	{ "263-p2a.ep2",	0x400000, 0x67a9c85c, 1 | BRF_ESS | BRF_PRG }, // 15
  
-@@ -23081,7 +23085,7 @@ struct BurnDriver BurnDrvmslug4dd = {
+@@ -23113,7 +23113,7 @@ struct BurnDriver BurnDrvmslug4dd = {
  };
  
  
@@ -3020,7 +2817,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug4aksRomDesc[] = {
  	/* Multifunction - 20171225 */
-@@ -23223,7 +23227,7 @@ struct BurnDriver BurnDrvmslug4c = {
+@@ -23255,7 +23255,7 @@ struct BurnDriver BurnDrvmslug4c = {
  
  
  // Metal Slug 5 Unity (Added Timer Ver. 2021-04-23)
@@ -3029,7 +2826,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug5unityRomDesc[] = {
  	/* Encrypted */
-@@ -23267,7 +23271,7 @@ struct BurnDriver BurnDrvmslug5unity = {
+@@ -23299,7 +23299,7 @@ struct BurnDriver BurnDrvmslug5unity = {
  
  
  // Metal Slug 5 (Extend Ver. 2022, Hack)
@@ -3038,7 +2835,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug5exRomDesc[] = {
  	/* Extend v1.2 - 20221002 */
-@@ -23483,7 +23487,7 @@ struct BurnDriver BurnDrvmslug5cb = {
+@@ -23515,7 +23515,7 @@ struct BurnDriver BurnDrvmslug5cb = {
  };
  
  
@@ -3047,7 +2844,7 @@ index 1ea164ed2..bc2d1dfa6 100644
  
  static struct BurnRomInfo mslug5aksRomDesc[] = {
  	/* Stone Turtle - 20230518 */
-@@ -25523,3 +25527,2887 @@ struct BurnDriver BurnDrvmslug3x = {
+@@ -25584,3 +25584,2887 @@ struct BurnDriver BurnDrvmslug3x = {
  	mslug3xInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -5935,35 +5732,6 @@ index 1ea164ed2..bc2d1dfa6 100644
 +	kof99ndInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
 +	0x1000, 304, 224, 4, 3
 +};
-diff --git a/src/burn/drv/neogeo/neo_run.cpp b/src/burn/drv/neogeo/neo_run.cpp
-index cad81de9c..4458f27fb 100644
---- a/src/burn/drv/neogeo/neo_run.cpp
-+++ b/src/burn/drv/neogeo/neo_run.cpp
-@@ -4577,6 +4577,8 @@ static INT32 NeoSekRun(const INT32 nCycles)
- 	return nCyclesExecutedTotal;
- }
- 
-+static INT32 in_cd_ffwd = 0;
-+
- INT32 NeoFrame()
- {
- 	//bprintf(0, _T("%X,"), SekReadWord(0x108)); // show game-id
-@@ -5108,5 +5110,15 @@ INT32 NeoFrame()
- 			CDEmuGetSoundBuffer(pBurnSoundOut, nBurnSoundLen);
- 	}
- 
-+	// neocd super-speed-loader hack for the impatient
-+	if (nNeoSystemType & NEO_SYS_CD && in_cd_ffwd == 0 && NeoCDBios & 0x80) {
-+		in_cd_ffwd = 1;
-+		while (NeoCDAssyStatus == 1 && bNeoCDLoadSector && LC8951RegistersW[10] & 4) {
-+			NeoFrame();
-+			if (pBurnSoundOut) BurnSoundClear();
-+		}
-+		in_cd_ffwd = 0;
-+	}
-+
- 	return 0;
- }
 diff --git a/src/burn/drv/pgm/d_pgm.cpp b/src/burn/drv/pgm/d_pgm.cpp
 index 3b1585638..ac7d49b1a 100644
 --- a/src/burn/drv/pgm/d_pgm.cpp
@@ -6155,18 +5923,9 @@ index f7edce419..621d3f9ae 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/psikyo/d_psikyo.cpp b/src/burn/drv/psikyo/d_psikyo.cpp
-index d67118e7e..9544fffa2 100644
+index d67118e7e..c8894e2f3 100644
 --- a/src/burn/drv/psikyo/d_psikyo.cpp
 +++ b/src/burn/drv/psikyo/d_psikyo.cpp
-@@ -581,7 +581,7 @@ static struct BurnDIPInfo tengaiDIPList[] = {
- 	{0x15,	0x00, 0xFF, 0xFF, NULL							},
- 
- 	// DIP 2
--	{0,		0xFE, 0,	2, 	  "Screen Reverse"				},
-+	{0,		0xFE, 0,	2, 	  "Screen reverse"				},
- 	{0x16,	0x01, 0x01,	0x00, "Normal screen"				},
- 	{0x16,	0x01, 0x01,	0x01, "Invert screen"				},
- 
 @@ -685,6 +685,18 @@ static struct BurnDIPInfo tengaijRegionDIPList[] = {
  
  STDDIPINFOEXT(tengaij, tengai, tengaijRegion)
@@ -6299,68 +6058,6 @@ index d67118e7e..9544fffa2 100644
 +	TengaiInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &PsikyoRecalcPalette, 0x1000,
 +	320, 224, 4, 3
 +};
-diff --git a/src/burn/drv/sega/d_sys1.cpp b/src/burn/drv/sega/d_sys1.cpp
-index 91f9c06c0..aeb85ec7f 100644
---- a/src/burn/drv/sega/d_sys1.cpp
-+++ b/src/burn/drv/sega/d_sys1.cpp
-@@ -7020,7 +7020,7 @@ struct BurnDriver BurnDrvFlicky = {
- 
- struct BurnDriver BurnDrvFlickya = {
- 	"flickya", "flicky", NULL, NULL, "1984",
--	"Flicky (128k Version, 315-5051, larger roms))\0", NULL, "Sega", "System 1",
-+	"Flicky (128k Version, 315-5051, larger roms)\0", NULL, "Sega", "System 1",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
- 	NULL, FlickyaRomInfo, FlickyaRomName, NULL, NULL, NULL, NULL, FlickyInputInfo, FlickyDIPInfo,
-@@ -7742,7 +7742,7 @@ struct BurnDriver BurnDrvWbmlvcd = {
- 	"wbmlvcd", "wbml", NULL, NULL, "2009",
- 	"Wonder Boy - Monster Land (decrypted bootleg of English, Virtual Console release)\0", NULL, "bootleg (mpatou)", "System 2",
- 	NULL, NULL, NULL, NULL,
--	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG , 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG, 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
- 	NULL, wbmlvcdRomInfo, wbmlvcdRomName, NULL, NULL, NULL, NULL, MyheroInputInfo, WbmlDIPInfo,
- 	TokisensaInit, System1Exit, System1Frame, System2Render, System1Scan,
- 	NULL, 0x800, 256, 224, 4, 3
-diff --git a/src/burn/drv/sega/d_sys16b.cpp b/src/burn/drv/sega/d_sys16b.cpp
-index 5b9a0307c..06c6edc3e 100644
---- a/src/burn/drv/sega/d_sys16b.cpp
-+++ b/src/burn/drv/sega/d_sys16b.cpp
-@@ -9683,7 +9683,7 @@ struct BurnDriver BurnDrvCottonud = {
- 
- struct BurnDriver BurnDrvCottonj = {
- 	"cottonj", "cotton", NULL, NULL, "1991",
--	"Cotton (set 2, Japan, Rev B, FD1094 317-0179b))\0", NULL, "Success / Sega", "System 16B",
-+	"Cotton (set 2, Japan, Rev B, FD1094 317-0179b)\0", NULL, "Success / Sega", "System 16B",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704 | HARDWARE_SEGA_FD1094_ENC, GBF_HORSHOOT, 0,
- 	NULL, CottonjRomInfo, CottonjRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9693,7 +9693,7 @@ struct BurnDriver BurnDrvCottonj = {
- 
- struct BurnDriver BurnDrvCottonjd = {
- 	"cottonjd", "cotton", NULL, NULL, "1991",
--	"Cotton (set 2, Japan, Rev B, FD1094 317-0179b decrypted))\0", NULL, "Success / Sega", "System 16B",
-+	"Cotton (set 2, Japan, Rev B, FD1094 317-0179b decrypted)\0", NULL, "Success / Sega", "System 16B",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704, GBF_HORSHOOT, 0,
- 	NULL, CottonjdRomInfo, CottonjdRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9703,7 +9703,7 @@ struct BurnDriver BurnDrvCottonjd = {
- 
- struct BurnDriver BurnDrvCottonja = {
- 	"cottonja", "cotton", NULL, NULL, "1991",
--	"Cotton (set 1, Japan, Rev A, FD1094 317-0179a))\0", NULL, "Success / Sega", "System 16B",
-+	"Cotton (set 1, Japan, Rev A, FD1094 317-0179a)\0", NULL, "Success / Sega", "System 16B",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704 | HARDWARE_SEGA_FD1094_ENC, GBF_HORSHOOT, 0,
- 	NULL, CottonjaRomInfo, CottonjaRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9713,7 +9713,7 @@ struct BurnDriver BurnDrvCottonja = {
- 
- struct BurnDriver BurnDrvCottonjad = {
- 	"cottonjad", "cotton", NULL, NULL, "1991",
--	"Cotton (set 1, Japan, Rev A, FD1094 317-0179a decrypted))\0", NULL, "Success / Sega", "System 16B",
-+	"Cotton (set 1, Japan, Rev A, FD1094 317-0179a decrypted)\0", NULL, "Success / Sega", "System 16B",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704, GBF_HORSHOOT, 0,
- 	NULL, CottonjadRomInfo, CottonjadRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
 diff --git a/src/burn/drv/toaplan/d_toaplan1.cpp b/src/burn/drv/toaplan/d_toaplan1.cpp
 index 338d1114c..0a00bb2f6 100644
 --- a/src/burn/drv/toaplan/d_toaplan1.cpp
@@ -6374,51 +6071,3 @@ index 338d1114c..0a00bb2f6 100644
  	{0x18, 0x01, 0x0f, 0x00, "Japan"		},
  	{0x18, 0x01, 0x0f, 0x01, "USA"			},
  	{0x18, 0x01, 0x0f, 0x02, "Europe"		},
-diff --git a/src/burner/gami.cpp b/src/burner/gami.cpp
-index 50916f32f..1717190c2 100644
---- a/src/burner/gami.cpp
-+++ b/src/burner/gami.cpp
-@@ -2138,7 +2138,7 @@ INT32 GameInputAutoIni(INT32 nPlayer, TCHAR* lpszFile, bool bOverWrite)
- tIniStruct gamehw_cfg[] = {
- 	{_T("CPS-1/CPS-2/CPS-3 hardware"),	_T("config/presets/cps.ini"),		{ HARDWARE_CAPCOM_CPS1, HARDWARE_CAPCOM_CPS1_QSOUND, HARDWARE_CAPCOM_CPS1_GENERIC, HARDWARE_CAPCOM_CPSCHANGER, HARDWARE_CAPCOM_CPS2, HARDWARE_CAPCOM_CPS3, 0 }, "$info=" },
- 	{_T("Neo-Geo hardware"),			_T("config/presets/neogeo.ini"),	{ HARDWARE_SNK_NEOGEO, 0 }, 		"$info="		},
--	{_T("Neo-Geo hardware"),			_T("config/presets/neogeo.ini"),	{ HARDWARE_SNK_NEOCD, 0 },			"$neocd="		},
-+	{_T("Neo-Geo hardware"),			_T("config/presets/neogeocd.ini"),	{ HARDWARE_SNK_NEOCD, 0 },			"$neocd="		},
- 	{_T("Neo Geo Pocket hardware"),     _T("config/presets/ngp.ini"),       { HARDWARE_SNK_NGP, 0 },			"$ngp="			},
- 	{_T("Neo Geo Pocket hardware"),		_T("config/presets/ngp.ini"),		{ HARDWARE_SNK_NGPC, 0 },			"$ngpc="		},
- 	{_T("NES hardware"),				_T("config/presets/nes.ini"),		{ HARDWARE_NES, 0 },				"$nes="			},
-diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
-index 298da0935..3ec40f9ba 100644
---- a/src/burner/libretro/retro_input.cpp
-+++ b/src/burner/libretro/retro_input.cpp
-@@ -1824,6 +1824,30 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
- 		}
- 	}
- 
-+	// Street Fighter Zero (CPS Changer, Japan 951020)
-+	// Street Fighter Zero (CPS Changer, Korea 040820)
-+	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Japan 921031)
-+	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Korea 921031)
-+	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Japan 921031, Unlock Ura Mode)
-+	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Korea 921031, Unlock Ura Mode)
-+	if ((parentrom && strcmp(parentrom, "sfzch") == 0) ||
-+		(drvname && strcmp(drvname, "sfzch") == 0) ||
-+		(parentrom && strcmp(parentrom, "sfzchk") == 0) ||
-+		(drvname && strcmp(drvname, "sfzchk") == 0) ||
-+		(parentrom && strcmp(parentrom, "wofch") == 0) ||
-+		(drvname && strcmp(drvname, "wofch") == 0) ||
-+		(parentrom && strcmp(parentrom, "wofchk") == 0) ||
-+		(drvname && strcmp(drvname, "wofchk") == 0) ||
-+		(parentrom && strcmp(parentrom, "wofchu") == 0) ||
-+		(drvname && strcmp(drvname, "wofchu") == 0) ||
-+		(parentrom && strcmp(parentrom, "wofchku") == 0) ||
-+		(drvname && strcmp(drvname, "wofchku") == 0)
-+	) {
-+		if (strcmp("Pause", description) == 0) {
-+			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_SELECT, description);
-+		}
-+	}
-+
- 	// Caliber 50
- 	// Time Soldiers
- 	if ((parentrom && strcmp(parentrom, "calibr50") == 0) ||

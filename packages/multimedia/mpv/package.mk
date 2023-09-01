@@ -3,24 +3,24 @@
 # Copyright (C) 2022-present Fewtarius
 
 PKG_NAME="mpv"
-PKG_VERSION="f4210f84906c3b00a65fba198c8127b6757b9350" #0.36.0
+PKG_VERSION="af9b53f3a3831531504906882efce0d979506ed3"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="https://github.com/mpv-player/mpv"
 PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain ffmpeg SDL2 luajit libass uchardet waf:host"
 PKG_LONGDESC="Video player based on MPlayer/mplayer2 https://mpv.io"
-PKG_TOOLCHAIN="manual"
 
 if [ ! "${OPENGL}" = "no" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGL} glu libglvnd"
-  PKG_WAF_OPTS=" --enable-gl --disable-egl"
+  PKG_MESON_OPTS_TARGET+=" -Dgl=enabled -Degl=disabled"
 fi
 
 if [ "${OPENGLES_SUPPORT}" = yes ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGLES}"
-  PKG_WAF_OPTS=" --disable-gl --enable-egl"
+  PKG_MESON_OPTS_TARGET+=" -Dgl=disabled -Degl=enabled"
 fi
 
+<<<<<<< HEAD
 pre_configure_target() {
   cp -f ${TOOLCHAIN}/bin/waf ${PKG_BUILD}
 }
@@ -38,3 +38,5 @@ makeinstall_target() {
   mkdir -p ${INSTALL}/usr/bin
   cp ./build/mpv ${INSTALL}/usr/bin
 }
+=======
+>>>>>>> b720f4cfc7d9788432dde132a818145e33107878
