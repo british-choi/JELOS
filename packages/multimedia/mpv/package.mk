@@ -20,23 +20,3 @@ if [ "${OPENGLES_SUPPORT}" = yes ]; then
   PKG_MESON_OPTS_TARGET+=" -Dgl=disabled -Degl=enabled"
 fi
 
-<<<<<<< HEAD
-pre_configure_target() {
-  cp -f ${TOOLCHAIN}/bin/waf ${PKG_BUILD}
-}
-
-configure_target() {
-  cd ${PKG_BUILD}
-  ${PKG_BUILD}/waf configure --enable-sdl2 --enable-sdl2-gamepad --enable-pulse --disable-libbluray --enable-uchardet ${PKG_WAF_OPTS}
-}
-
-make_target() {
-  ${PKG_BUILD}/waf build
-}
-
-makeinstall_target() {
-  mkdir -p ${INSTALL}/usr/bin
-  cp ./build/mpv ${INSTALL}/usr/bin
-}
-=======
->>>>>>> b720f4cfc7d9788432dde132a818145e33107878
